@@ -1,0 +1,52 @@
+.container {
+    max-width: 1440px;
+}
+
+#loupe{
+    border: none;
+}
+
+.cellule {
+    flex: 0 0 40%;
+    max-width: 30%;
+}
+
+.titre-recette, .temps {
+    font-size: 1rem;
+}
+.temps {
+    font-size: 0.8rem;
+}
+
+
+.ingredient-recette {
+    font-size: 0.7rem;
+    line-height: 1.2;
+}
+
+.description-recette {
+    font-size: 0.7rem;
+}
+
+.description {
+    width: 85%;
+    line-height: 1.2;
+}
+
+.fleche-bas {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#dropdownUstensil {
+    display: none;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+}
+
+.form-control {
+    width: 90%;
+}

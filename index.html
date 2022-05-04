@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+      <!-- Lien pour utiliser les fonctions de Bootstrap en css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/style/style.css">
+    <script src="https://kit.fontawesome.com/df992e8411.js" crossorigin="anonymous"></script>
+    <script src="/script/index.js" type="module" async></script>
+    <title>Les petits plats</title>
+  </head>
+    <body> 
+      <header>
+        <div class="container">
+            <div class="row text-center">
+                <div class="col">
+                    <img src="/assets/logo_les_petits_plats.png" alt="logo">
+                </div>
+            </div>
+            <div id="barrePrincipale" class="row mb-2">
+                <div class="col">
+                    <div class="input-group">
+                        <!--Barre de recherche de recette-->
+                        <input type="text" id="search-recette" class="form-control" placeholder="Rechercher une recettes" aria-label="Rechercher une recettes" aria-describedby="basic-addon2" style="background-color: #E7E7E7;">
+                        <div class="input-group-append">
+                            <button id="loupe" class="btn btn-outline-secondary" type="button" style="background-color: #E7E7E7;"><i class="fas fa-search "style="color: black;"></i></button>
+                        </div>
+                    </div>
+                    <p class="paragraph"></p>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-2">
+                    <div class="btn-group">
+                        <input type="text" id="search-ingredients" class="form-control" placeholder="Ingrédients" aria-label="Ingrédients" aria-describedby="basic-addon2" style="background-color: blue; color: white;">
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="col-2">
+                    <div class="btn-group">
+                        <div class="dropdownAppareil">
+                            <button class="btn btn-success" type="button" id="dropdownAppareil" aria-haspopup="true" aria-expanded="false">
+                               <span id="spanAppareil">Appareils</span>
+                                <input type="text" class="form-control d-none" id="searchAppareil" placeholder="ex: four" aria-label="Rechercher un appareil" autofocus="autofocus">
+                            </button>
+                            <div id="menu" class="d-none" aria-labelledby="dropdownAppareil">
+                                <div id="menuItems">Bonjour</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <div class="col-2">
+                    <div class="btn-group">
+                        <input type="text" id="search-ustensil" class="form-control" placeholder="Ustensils" aria-label="Ustensils" aria-describedby="basic-addon2" style="background-color: red; color: white;">
+                        <div class="dropdown-menu bg-danger">
+                            <a class="dropdown-item" href="#">Action</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <div class="btn-group bg-primary ustensils-custom">
+                        <input type="text" id="search-ustensils" class="form-control" placeholder="Ustensils" aria-label="Ustensils" aria-describedby="basic-addon2" style="background-color: red; color: white;" >
+                        <p class="fleche-bas"><i class="fa-solid fa-angle-down"></i></p>
+                        <!-- <p class="fleche-haut"><i class="fa-solid fa-angle-up"></i></p> -->
+                    </div>
+                    <div class="bg-success" id="dropdownUstensil">
+                        <p>
+                            bonjour</br>
+                            oui
+                        </p>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+      </header>
+      <main>
+        <div class="container mt-5">
+          <div class="row text-center justify-content-between mt-5 vignette-recette">
+                
+            <div class="card col-3 mb-5 pr-0 pl-0 cellule">
+                <div class="card-header bg-secondary justify-content-between pt-5 pb-5"></div>
+                <div class="card-body pl-2 pr-2">
+                    <div class="row card-title text-left ml-2">
+                        <div class="col-8 pl-0">
+                           <h6 class="titre-recette">Limonade de Coco</h6> 
+                        </div>
+                        <div class="col-4 pr-0 font-weight-bold temps  text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                              </svg> 10 min
+                        </div>
+                    </div>
+                    <div class="row card-text ml-2">
+                        <div class="col-6 pl-0 pr-0">
+                            <p class="ingredient-recette text-left">
+                                <strong>Lait de coco:</strong> 400ml</br>
+                                <strong>Jus de citron:</strong> 2</br>
+                                <strong>Créme de coco:</strong> 4 cuillères</br>
+                                <strong>Sucre:</strong> 20g</br>
+                                <strong>Glaçons:</strong> 2
+                            </p> 
+                        </div>
+                        <div class="col-6 pl-0 pr-0 description-recette text-right">
+                            <p class="description text-left">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card col-3 mb-5 pr-0 pl-0 cellule">
+                <div class="card-header bg-secondary justify-content-between pt-5 pb-5"></div>
+                <div class="card-body pl-2 pr-2">
+                    <div class="row card-title text-left ml-2">
+                        <div class="col-8 pl-0">
+                           <h6 class="titre-recette">Limonade de Coco</h6> 
+                        </div>
+                        <div class="col-4 pr-0 font-weight-bold temps  text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                              </svg> 10 min
+                        </div>
+                    </div>
+                    <div class="row card-text ml-2">
+                        <div class="col-6 pl-0 pr-0">
+                            <p class="ingredient-recette text-left">
+                                <strong>Lait de coco:</strong> 400ml</br>
+                                <strong>Jus de citron:</strong> 2</br>
+                                <strong>Créme de coco:</strong> 4 cuillères</br>
+                                <strong>Sucre:</strong> 20g</br>
+                                <strong>Glaçons:</strong> 2
+                            </p> 
+                        </div>
+                        <div class="col-6 pl-0 pr-0 description-recette text-right">
+                            <p class="description text-left">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card col-3 mb-5 pr-0 pl-0 cellule">
+                <div class="card-header bg-secondary justify-content-between pt-5 pb-5"></div>
+                <div class="card-body pl-2 pr-2">
+                    <div class="row card-title text-left ml-2">
+                        <div class="col-8 pl-0">
+                           <h6 class="titre-recette">Limonade de Coco</h6> 
+                        </div>
+                        <div class="col-4 pr-0 font-weight-bold temps  text-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                              </svg> 10 min
+                        </div>
+                    </div>
+                    <div class="row card-text ml-2">
+                        <div class="col-6 pl-0 pr-0">
+                            <p class="ingredient-recette text-left">
+                                <strong>Lait de coco:</strong> 400ml</br>
+                                <strong>Jus de citron:</strong> 2</br>
+                                <strong>Créme de coco:</strong> 4 cuillères</br>
+                                <strong>Sucre:</strong> 20g</br>
+                                <strong>Glaçons:</strong> 2
+                            </p> 
+                        </div>
+                        <div class="col-6 pl-0 pr-0 description-recette text-right">
+                            <p class="description text-left">Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </main>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

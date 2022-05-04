@@ -32,68 +32,62 @@
                     <p class="paragraph"></p>
                 </div>
             </div>
-
-
-
+            <!-- Filtres -->
             <div class="row">
+                <!-- Filtre ingrédients -->
                 <div class="col-2">
                     <div class="btn-group">
-                        <input type="text" id="search-ingredients" class="form-control" placeholder="Ingrédients" aria-label="Ingrédients" aria-describedby="basic-addon2" style="background-color: blue; color: white;">
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Action</a>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-                <div class="col-2">
-                    <div class="btn-group">
-                        <div class="dropdownAppareil">
-                            <button class="btn btn-success" type="button" id="dropdownAppareil" aria-haspopup="true" aria-expanded="false">
-                               <span id="spanAppareil">Appareils</span>
-                                <input type="text" class="form-control d-none" id="searchAppareil" placeholder="ex: four" aria-label="Rechercher un appareil" autofocus="autofocus">
+                        <div class="dropdownIngredient">
+                            <button class="btn btn-primary" type="button" id="dropdownIngredient" aria-haspopup="true" aria-expanded="false">
+                               <span id="spanIngredient">Ingrédients</span>
+                                <span id="spaceUpIngredient" class="ml-3">&nbsp;</span>
+                                <input type="text" class="form-control bg-primary text-white border-0 d-none" id="searchIngredient" placeholder="ex: coco" aria-label="Rechercher un ingrédient" autofocus="autofocus">
+                                <span class="ml-3">&nbsp;</span>
+                                <i id="arrowDownIngredient" class="fa-solid fa-angle-down"></i>
+                                <i id="arrowUpIngredient" class="d-none fa-solid fa-angle-up"></i>
                             </button>
-                            <div id="menu" class="d-none" aria-labelledby="dropdownAppareil">
+                            <div id="menuIngredient" class="d-none bg-primary" aria-labelledby="dropdownIngredient">
                                 <div id="menuItems">Bonjour</div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
+                <!-- Filtre appareils -->
                 <div class="col-2">
                     <div class="btn-group">
-                        <input type="text" id="search-ustensil" class="form-control" placeholder="Ustensils" aria-label="Ustensils" aria-describedby="basic-addon2" style="background-color: red; color: white;">
-                        <div class="dropdown-menu bg-danger">
-                            <a class="dropdown-item" href="#">Action</a>
+                        <div class="dropdownAppareil">
+                            <button class="btn btn-success" type="button" id="dropdownAppareil" aria-haspopup="true" aria-expanded="false">
+                               <span id="spanAppareil">Appareils</span>
+                                <span id="spaceUpAppareil" class="ml-3">&nbsp;</span>
+                                <input type="text" class="form-control bg-success text-white d-none" id="searchAppareil" placeholder="ex: four" aria-label="Rechercher un appareil" autofocus="autofocus">
+                                <span class="ml-3">&nbsp;</span>
+                                <i id="arrowDownAppareil" class="fa-solid fa-angle-down"></i>
+                                <i id="arrowUpAppareil" class="d-none fa-solid fa-angle-up"></i>
+                            </button>
+                            <div id="menuAppareil" class="d-none bg-success" aria-labelledby="dropdownAppareil">
+                                <div id="menuItems">Bonjour</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
+                <!-- Filtre ustensils -->
                 <div class="col-2">
-                    <div class="btn-group bg-primary ustensils-custom">
-                        <input type="text" id="search-ustensils" class="form-control" placeholder="Ustensils" aria-label="Ustensils" aria-describedby="basic-addon2" style="background-color: red; color: white;" >
-                        <p class="fleche-bas"><i class="fa-solid fa-angle-down"></i></p>
-                        <!-- <p class="fleche-haut"><i class="fa-solid fa-angle-up"></i></p> -->
-                    </div>
-                    <div class="bg-success" id="dropdownUstensil">
-                        <p>
-                            bonjour</br>
-                            oui
-                        </p>
+                    <div class="btn-group">
+                        <div class="dropdownUstensil">
+                            <button class="btn btn-danger" type="button" id="dropdownUstensil" aria-haspopup="true" aria-expanded="false">
+                               <span id="spanUstensil">Ustensils</span>
+                                <span id="spaceUpUstensil" class="ml-3">&nbsp;</span>
+                                <input type="text" class="form-control bg-danger text-white d-none" id="searchUstensil" placeholder="ex: mixer" aria-label="Rechercher un Ustensil" autofocus="autofocus">
+                                <span class="ml-3">&nbsp;</span>
+                                <i id="arrowDownUstensil" class="fa-solid fa-angle-down"></i>
+                                <i id="arrowUpUstensil" class="d-none fa-solid fa-angle-up"></i>
+                            </button>
+                            <div id="menuUstensil" class="d-none bg-danger" aria-labelledby="dropdownUstensil">
+                                <div id="menuItems">Bonjour</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
       </header>

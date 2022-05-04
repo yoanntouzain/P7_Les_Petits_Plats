@@ -33,15 +33,6 @@
     line-height: 1.2;
 }
 
-.fleche-bas {
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-#dropdownUstensil {
-    display: none;
-}
-
 .btn {
     display: flex;
     align-items: center;

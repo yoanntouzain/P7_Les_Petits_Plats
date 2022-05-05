@@ -7,8 +7,9 @@
 }
 
 .cellule {
-    flex: 0 0 40%;
+    flex: 0 0 30%;
     max-width: 30%;
+    max-height: 30%;
 }
 
 .titre-recette, .temps {
@@ -25,6 +26,7 @@
 }
 
 .description-recette {
+    display: flex;
     font-size: 0.7rem;
 }
 
@@ -40,4 +42,15 @@
 
 .form-control {
     width: 90%;
+}
+
+.imageRecette{
+    height: 60%;
+    max-height: 50%;
+}
+
+.descriptifRecette {
+    height: 60%;
+    max-height: 240px;
+    overflow: hidden;
 }

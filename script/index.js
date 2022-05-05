@@ -8,8 +8,6 @@ const menuAppareil = document.getElementById("menuAppareil")
 const spaceUpAppareil = document.getElementById("spaceUpAppareil")
 const arrowDownAppareil = document.getElementById("arrowDownAppareil")
 const arrowUpAppareil = document.getElementById("arrowUpAppareil")
-console.log(recipes)
-console.log(Recipe)
 
 dropdownAppareil.addEventListener("click", function() {
     const spanAppareil = document.getElementById("spanAppareil")
@@ -109,3 +107,38 @@ dropdownUstensil.addEventListener("click", function() {
         arrowUpUstensil.classList.add("d-none")
     }
 })
+
+class DetailRecipe {
+    constructor() {
+        this.vignetteRecette = document.querySelector(".vignette-recette")
+    }
+
+    displayRecette() {
+       recipes
+        .map(recipe => new Recipe(recipe))
+        .forEach(recipe => {
+            let listIngredient = ""
+            recipe.ingredients.forEach(ingredient => {
+                //condition: si ingredient.quantity à une valeur différente de undefined alors vérifie la condition suivante; sinon affiche uniquement la liste des ingrédients
+                if (ingredient.quantity !== undefined) {
+                    if (ingredient.unit != undefined) {
+                        listIngredient +=
+                        `<strong>${ingredient.ingredient}:</strong> ${ingredient.quantity} ${ingredient.unit}</br>`
+                    }else{
+                        listIngredient +=
+                        `<strong>${ingredient.ingredient}:</strong> ${ingredient.quantity}</br>`
+                    }
+                }else {
+                    listIngredient +=
+                    `<strong>${ingredient.ingredient}</strong></br>`
+                }
+            })
+            const Template = new Recipe(recipe)
+            this.vignetteRecette.appendChild(Template.createCard(listIngredient))
+        })
+    }
+}
+
+// Permet d'afficher toutes les recettes
+const listRecipe = new DetailRecipe()
+listRecipe.displayRecette()

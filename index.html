@@ -35,10 +35,10 @@
             <!-- Filtres -->
             <div class="row">
                 <!-- Filtre ingrédients -->
-                <div class="col-2">
+                <div id="sizeBtnIngredient" class="col-2">
                     <div class="btn-group">
                         <div class="dropdownIngredient">
-                            <button class="btn btn-primary" type="button" id="dropdownIngredient" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn d-flex align-items-center btn-primary container-fluid" type="button" id="dropdownIngredient" aria-haspopup="true" aria-expanded="false">
                                <span id="spanIngredient">Ingrédients</span>
                                 <span id="spaceUpIngredient" class="ml-3">&nbsp;</span>
                                 <input type="text" class="form-control bg-primary text-white border-0 d-none" id="searchIngredient" placeholder="ex: coco" aria-label="Rechercher un ingrédient" autofocus="autofocus">
@@ -47,13 +47,26 @@
                                 <i id="arrowUpIngredient" class="d-none fa-solid fa-angle-up"></i>
                             </button>
                             <div id="menuIngredient" class="d-none bg-primary" aria-labelledby="dropdownIngredient">
-                                <div id="menuItems">Bonjour</div>
+                                <div id="menuItemIngredient">
+                                    <!-- <p class="mb-1 ml-3 mr-5">bonjour</p>
+                                    <p class="mb-1 ml-3 mr-5">bonjour</p>
+                                    <p class="mb-1 ml-3 mr-5">bonjour</p>
+                                    <p class="mb-1 ml-3 mr-5">bonjour</p>
+                                    <p class="mb-1 ml-3 mr-5">bonjour</p>
+                                    <p class="mb-1 ml-3 mr-5">bonjour</p>
+                                    <p class="mb-1 ml-3 mr-5">bonjour</p>
+                                    <p class="mb-1 ml-3 mr-5">bonjour</p>
+                                    <p class="mb-1 ml-3 mr-5">bonjour</p>
+                                    <p class="mb-1 ml-3 mr-5">bonjour</p>
+                                    <p class="mb-1 ml-3 mr-5">bonjour</p>
+                                    <p class="mb-1 ml-3 mr-5">bonjour</p> -->
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Filtre appareils -->
-                <div class="col-2">
+                <div class="col">
                     <div class="btn-group">
                         <div class="dropdownAppareil">
                             <button class="btn btn-success" type="button" id="dropdownAppareil" aria-haspopup="true" aria-expanded="false">
@@ -65,13 +78,13 @@
                                 <i id="arrowUpAppareil" class="d-none fa-solid fa-angle-up"></i>
                             </button>
                             <div id="menuAppareil" class="d-none bg-success" aria-labelledby="dropdownAppareil">
-                                <div id="menuItems">Bonjour</div>
+                                <div id="menuItemAppareil"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Filtre ustensils -->
-                <div class="col-2">
+                <div class="col">
                     <div class="btn-group">
                         <div class="dropdownUstensil">
                             <button class="btn btn-danger" type="button" id="dropdownUstensil" aria-haspopup="true" aria-expanded="false">
@@ -83,7 +96,7 @@
                                 <i id="arrowUpUstensil" class="d-none fa-solid fa-angle-up"></i>
                             </button>
                             <div id="menuUstensil" class="d-none bg-danger" aria-labelledby="dropdownUstensil">
-                                <div id="menuItems">Bonjour</div>
+                                <div id="menuItemUstensil"></div>
                             </div>
                         </div>
                     </div>

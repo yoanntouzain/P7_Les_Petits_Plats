@@ -25,9 +25,9 @@ dropdownIngredient.addEventListener("click", function() {
         arrowDownIngredient.classList.add("d-none")
         arrowUpIngredient.classList.remove("d-none")
         sizeBtnIngredient.classList.remove("col-2")
-        sizeBtnIngredient.classList.add("col-4")
+        sizeBtnIngredient.classList.add("col-6")
         searchIngredient.classList.remove()
-        searchIngredient.style.width = 92 + "%"
+        searchIngredient.style.width = 95 + "%"
         searchIngredient.focus()
     }
     // Quand tu ferme le menu
@@ -38,54 +38,61 @@ dropdownIngredient.addEventListener("click", function() {
         spaceUpIngredient.classList.remove("d-none")
         arrowDownIngredient.classList.remove("d-none")
         arrowUpIngredient.classList.add("d-none")
-        sizeBtnIngredient.classList.remove("col-4")
+        sizeBtnIngredient.classList.remove("col-6")
         sizeBtnIngredient.classList.add("col-2")
         searchIngredient.style.width = 90 + "%"
     }
 })
 
 // Appareils
-const dropdownAppareil = document.getElementById("dropdownAppareil")
-const searchAppareil = document.getElementById("searchAppareil")
-const menuAppareil = document.getElementById("menuAppareil")
-const spaceUpAppareil = document.getElementById("spaceUpAppareil")
-const arrowDownAppareil = document.getElementById("arrowDownAppareil")
-const arrowUpAppareil = document.getElementById("arrowUpAppareil")
+const dropdownAppliance = document.getElementById("dropdownAppliance")
+const menuAppliance = document.getElementById("menuAppliance")
+const spaceUpAppliance = document.getElementById("spaceUpAppliance")
+const arrowDownAppliance = document.getElementById("arrowDownAppliance")
+const arrowUpAppliance = document.getElementById("arrowUpAppliance")
+const sizeBtnAppliance = document.getElementById("sizeBtnAppliance")
 
 // Evenement
-dropdownAppareil.addEventListener("click", function() {
-    const spanAppareil = document.getElementById("spanAppareil")
-    const searchAppareil = document.getElementById("searchAppareil")
+dropdownAppliance.addEventListener("click", function() {
+    const spanAppliance = document.getElementById("spanAppliance")
+    const searchAppliance = document.getElementById("searchAppliance")
     // Quand tu ouvre le menu
-    if (menuAppareil.classList.contains("d-none")) {
-        menuAppareil.classList.remove("d-none")
-        menuAppareil.style.display = "block"
-        spanAppareil.style.display = "none"
-        searchAppareil.classList.remove("d-none")
-        spaceUpAppareil.classList.add("d-none")
-        arrowDownAppareil.classList.add("d-none")
-        arrowUpAppareil.classList.remove("d-none")
-        searchAppareil.focus()
+    if (menuAppliance.classList.contains("d-none")) {
+        menuAppliance.classList.remove("d-none")
+        menuAppliance.style.display = "block"
+        spanAppliance.style.display = "none"
+        searchAppliance.classList.remove("d-none")
+        spaceUpAppliance.classList.add("d-none")
+        arrowDownAppliance.classList.add("d-none")
+        arrowUpAppliance.classList.remove("d-none")
+        sizeBtnAppliance.classList.remove("col-2")
+        sizeBtnAppliance.classList.add("col-6")
+        searchAppliance.classList.remove()
+        searchAppliance.style.width = 95 + "%"
+        searchAppliance.focus()
     }
     // Quand tu ferme le menu
     else  {
-        menuAppareil.classList.add("d-none")
-        spanAppareil.style.display = "block"
-        searchAppareil.classList.add("d-none")
-        spaceUpAppareil.classList.remove("d-none")
-        arrowDownAppareil.classList.remove("d-none")
-        arrowUpAppareil.classList.add("d-none")
+        menuAppliance.classList.add("d-none")
+        spanAppliance.style.display = "block"
+        searchAppliance.classList.add("d-none")
+        spaceUpAppliance.classList.remove("d-none")
+        arrowDownAppliance.classList.remove("d-none")
+        arrowUpAppliance.classList.add("d-none")
+        sizeBtnAppliance.classList.add("col-2")
+        sizeBtnAppliance.classList.remove("col-6")
+        searchAppliance.style.width = 90 + "%"
     }
 })
 
 
 //Ustensil
 const dropdownUstensil = document.getElementById("dropdownUstensil")
-const searchUstensil = document.getElementById("searchUstensil")
 const menuUstensil = document.getElementById("menuUstensil")
 const spaceUpUstensil = document.getElementById("spaceUpUstensil")
 const arrowDownUstensil = document.getElementById("arrowDownUstensil")
 const arrowUpUstensil = document.getElementById("arrowUpUstensil")
+const sizeBtnUstensil = document.getElementById("sizeBtnUstensil")
 
 
 // Evenement
@@ -101,6 +108,10 @@ dropdownUstensil.addEventListener("click", function() {
         spaceUpUstensil.classList.add("d-none")
         arrowDownUstensil.classList.add("d-none")
         arrowUpUstensil.classList.remove("d-none")
+        sizeBtnUstensil.classList.remove("col-2")
+        sizeBtnUstensil.classList.add("col-6")
+        searchUstensil.classList.remove()
+        searchUstensil.style.width = 95 + "%"
         searchUstensil.focus()
     }
     // Quand tu ferme le menu
@@ -111,13 +122,19 @@ dropdownUstensil.addEventListener("click", function() {
         spaceUpUstensil.classList.remove("d-none")
         arrowDownUstensil.classList.remove("d-none")
         arrowUpUstensil.classList.add("d-none")
+        sizeBtnUstensil.classList.add("col-2")
+        sizeBtnUstensil.classList.remove("col-6")
+        searchUstensil.style.width = 90 + "%"
     }
 })
 
 class DetailRecipe {
     constructor() {
         this.vignetteRecette = document.querySelector(".vignette-recette")
+        this.menuIngredient = document.querySelector("#menuIngredient")
         this.menuItemIngredient = document.querySelector("#menuItemIngredient")
+        this.menuItemAppliance = document.querySelector("#menuItemAppliance")
+        this.menuItemUstensil = document.querySelector("#menuItemUstensil")
     }
 
     displayRecette() {
@@ -146,15 +163,48 @@ class DetailRecipe {
     }
 
     displayIngredient() {
+        let arrayIngredientDuplicates = []
         recipes
         .map(recipe => new Recipe(recipe))
         .forEach(recipe => {
-            let listIngredient = ""
             recipe.ingredients.forEach(ingredient => {
-                listIngredient += `${ingredient.ingredient}, `
+                arrayIngredientDuplicates.push(ingredient.ingredient.toLocaleLowerCase())
             })
-            const Template = new Recipe(recipe)
-            this.menuItemIngredient.appendChild(Template.createListIngredient(listIngredient))
+        })
+        let arrayIngredients = [ ... new Set(arrayIngredientDuplicates)]
+        arrayIngredients.forEach(ingredient => {
+            const Template = new Recipe(ingredient)
+            this.menuItemIngredient.appendChild(Template.createListIngredient(ingredient)) 
+        })
+    }
+
+    displayAppliance() {
+        let arrayApplianceDuplicates = []
+        recipes
+        .map(recipe => new Recipe(recipe))
+        .forEach(recipe => {
+            arrayApplianceDuplicates.push(recipe.appliance.toLocaleLowerCase())
+        })
+        let arrayAppliances = [ ... new Set(arrayApplianceDuplicates)]
+        arrayAppliances.forEach(appliance => {
+            const Template = new Recipe(appliance)
+            this.menuItemAppliance.appendChild(Template.createListAppliance(appliance)) 
+        })
+    }
+
+    displayUstensil() {
+        let arrayUstensilDuplicates = []
+        recipes
+        .map(recipe => new Recipe(recipe))
+        .forEach(recipe => {
+            recipe.ustensils.forEach(ustensil => {
+                arrayUstensilDuplicates.push(ustensil.toLocaleLowerCase())
+            })
+        })
+        let arrayUstensils = [ ... new Set(arrayUstensilDuplicates)]
+        arrayUstensils.forEach(ustensil => {
+            const Template = new Recipe(ustensil)
+            this.menuItemUstensil.appendChild(Template.createListUstensil(ustensil)) 
         })
     }
 }
@@ -167,3 +217,11 @@ listRecipe.displayRecette()
 // Permet d'afficher tous les ingrédients dans le bouton filtre ingrédient
 const listIngredient = new DetailRecipe()
 listIngredient.displayIngredient()
+
+// Permet d'afficher tous les ingrédients dans le bouton filtre ingrédient
+const listAppliance = new DetailRecipe()
+listAppliance.displayAppliance()
+
+// Permet d'afficher tous les ingrédients dans le bouton filtre ingrédient
+const listUstensil = new DetailRecipe()
+listUstensil.displayUstensil()

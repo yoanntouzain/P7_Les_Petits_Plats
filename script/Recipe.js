@@ -47,11 +47,27 @@ export default class Recipe {
         return card
     }
 
-    createListIngredient(listIngredient) {
+    createListIngredient(ingredient) {
         const list = document.createElement('div')
-        list.setAttribute('class', 'row text-center')
+        list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
         list.innerHTML =
-        `${listIngredient}`
+        `<p id="${ingredient}" class="ingredient">${ingredient}</p>`
+    return list
+    }
+
+    createListAppliance(appliance) {
+        const list = document.createElement('div')
+        list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
+        list.innerHTML =
+        `<p id="${appliance}" class="appliance">${appliance}</p>`
+    return list
+    }
+
+    createListUstensil(ustensil) {
+        const list = document.createElement('div')
+        list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
+        list.innerHTML =
+        `<p id="${ustensil}" class="ustensil">${ustensil}</p>`
     return list
     }
 }

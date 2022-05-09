@@ -38,7 +38,7 @@
                 <div id="sizeBtnIngredient" class="col-2">
                     <div class="btn-group">
                         <div class="dropdownIngredient">
-                            <button class="btn d-flex align-items-center btn-primary container-fluid" type="button" id="dropdownIngredient" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn d-flex align-items-center container-fluid btn-primary" type="button" id="dropdownIngredient" aria-haspopup="true" aria-expanded="false">
                                <span id="spanIngredient">Ingrédients</span>
                                 <span id="spaceUpIngredient" class="ml-3">&nbsp;</span>
                                 <input type="text" class="form-control bg-primary text-white border-0 d-none" id="searchIngredient" placeholder="ex: coco" aria-label="Rechercher un ingrédient" autofocus="autofocus">
@@ -47,7 +47,7 @@
                                 <i id="arrowUpIngredient" class="d-none fa-solid fa-angle-up"></i>
                             </button>
                             <div id="menuIngredient" class="d-none bg-primary" aria-labelledby="dropdownIngredient">
-                                <div id="menuItemIngredient">
+                                <div id="menuItemIngredient" class="d-flex align-content-between flex-wrap">
                                     <!-- <p class="mb-1 ml-3 mr-5">bonjour</p>
                                     <p class="mb-1 ml-3 mr-5">bonjour</p>
                                     <p class="mb-1 ml-3 mr-5">bonjour</p>
@@ -66,37 +66,37 @@
                     </div>
                 </div>
                 <!-- Filtre appareils -->
-                <div class="col">
+                <div id="sizeBtnAppliance" class="col-2">
                     <div class="btn-group">
-                        <div class="dropdownAppareil">
-                            <button class="btn btn-success" type="button" id="dropdownAppareil" aria-haspopup="true" aria-expanded="false">
-                               <span id="spanAppareil">Appareils</span>
-                                <span id="spaceUpAppareil" class="ml-3">&nbsp;</span>
-                                <input type="text" class="form-control bg-success text-white d-none" id="searchAppareil" placeholder="ex: four" aria-label="Rechercher un appareil" autofocus="autofocus">
+                        <div class="dropdownAppliance">
+                            <button class="btn d-flex align-items-center container-fluid btn-success" type="button" id="dropdownAppliance" aria-haspopup="true" aria-expanded="false">
+                               <span id="spanAppliance">Appareils</span>
+                                <span id="spaceUpAppliance" class="ml-3">&nbsp;</span>
+                                <input type="text" class="form-control bg-success text-white border-0 d-none" id="searchAppliance" placeholder="ex: four" aria-label="Rechercher un appareil" autofocus="autofocus">
                                 <span class="ml-3">&nbsp;</span>
-                                <i id="arrowDownAppareil" class="fa-solid fa-angle-down"></i>
-                                <i id="arrowUpAppareil" class="d-none fa-solid fa-angle-up"></i>
+                                <i id="arrowDownAppliance" class="fa-solid fa-angle-down"></i>
+                                <i id="arrowUpAppliance" class="d-none fa-solid fa-angle-up"></i>
                             </button>
-                            <div id="menuAppareil" class="d-none bg-success" aria-labelledby="dropdownAppareil">
-                                <div id="menuItemAppareil"></div>
+                            <div id="menuAppliance" class="d-none bg-success" aria-labelledby="dropdownAppareil">
+                                <div id="menuItemAppliance" class="d-flex align-content-between flex-wrap"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Filtre ustensils -->
-                <div class="col">
+                <div id="sizeBtnUstensil" class="col-2">
                     <div class="btn-group">
                         <div class="dropdownUstensil">
-                            <button class="btn btn-danger" type="button" id="dropdownUstensil" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn d-flex align-items-center container-fluid btn-danger" type="button" id="dropdownUstensil" aria-haspopup="true" aria-expanded="false">
                                <span id="spanUstensil">Ustensils</span>
                                 <span id="spaceUpUstensil" class="ml-3">&nbsp;</span>
-                                <input type="text" class="form-control bg-danger text-white d-none" id="searchUstensil" placeholder="ex: mixer" aria-label="Rechercher un Ustensil" autofocus="autofocus">
+                                <input type="text" class="form-control bg-danger text-white border-0 d-none" id="searchUstensil" placeholder="ex: mixer" aria-label="Rechercher un Ustensil" autofocus="autofocus">
                                 <span class="ml-3">&nbsp;</span>
                                 <i id="arrowDownUstensil" class="fa-solid fa-angle-down"></i>
                                 <i id="arrowUpUstensil" class="d-none fa-solid fa-angle-up"></i>
                             </button>
                             <div id="menuUstensil" class="d-none bg-danger" aria-labelledby="dropdownUstensil">
-                                <div id="menuItemUstensil"></div>
+                                <div id="menuItemUstensil" class="d-flex align-content-between flex-wrap"></div>
                             </div>
                         </div>
                     </div>

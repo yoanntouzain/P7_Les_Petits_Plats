@@ -10,6 +10,7 @@ export default class Recipe {
         this.ustensils = data.ustensils;
         this.vignetteRecette = document.querySelector(".vignette-recette")
     }
+
     createCard(listIngredient) {
         const card = document.createElement("div")
         card.setAttribute("class", "card col-3 mb-5 pr-0 pl-0 cellule")
@@ -35,7 +36,7 @@ export default class Recipe {
                             ${listIngredient}
                         </p>
                     </div>
-                    <div class="col-6 pl-0 pr-0 description-recette text-right">
+                    <div class="col-6 pl-0 pr-0 description-recette d-flex text-right">
                         <p class="description text-left">
                             ${this.description}
                         </p>
@@ -44,5 +45,29 @@ export default class Recipe {
             </div>
         </div>`
         return card
+    }
+
+    createListIngredient(ingredient) {
+        const list = document.createElement('div')
+        list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
+        list.innerHTML =
+        `<p id="${ingredient}" class="ingredient">${ingredient}</p>`
+    return list
+    }
+
+    createListAppliance(appliance) {
+        const list = document.createElement('div')
+        list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
+        list.innerHTML =
+        `<p id="${appliance}" class="appliance">${appliance}</p>`
+    return list
+    }
+
+    createListUstensil(ustensil) {
+        const list = document.createElement('div')
+        list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
+        list.innerHTML =
+        `<p id="${ustensil}" class="ustensil">${ustensil}</p>`
+    return list
     }
 }

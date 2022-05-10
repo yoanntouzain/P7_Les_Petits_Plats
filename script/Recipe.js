@@ -11,10 +11,27 @@ export default class Recipe {
         this.vignetteRecette = document.querySelector(".vignette-recette")
     }
 
-    createCard(listIngredient) {
+    createCard() {
         const card = document.createElement("div")
         card.setAttribute("class", "card col-3 mb-5 pr-0 pl-0 cellule")
         card.setAttribute("id", this.id)
+
+        let listIngredient = ""
+        this.ingredients.forEach(ingredient => {
+            //condition: si ingredient.quantity à une valeur différente de undefined alors vérifie la condition suivante; sinon affiche uniquement la liste des ingrédients
+            if (ingredient.quantity !== undefined) {
+                if (ingredient.unit != undefined) {
+                    listIngredient +=
+                    `<strong>${ingredient.ingredient}:</strong> ${ingredient.quantity} ${ingredient.unit}<br/>`
+                }else{
+                    listIngredient +=
+                    `<strong>${ingredient.ingredient}:</strong> ${ingredient.quantity}<br/>`
+                }
+            }else {
+                listIngredient +=
+                `<strong>${ingredient.ingredient}</strong><br/>`
+            }
+        })
 
         card.innerHTML =
         `<div class="card-header bg-secondary justify-content-between pt-5 pb-5 imageRecette"></div>
@@ -47,27 +64,7 @@ export default class Recipe {
         return card
     }
 
-    createListIngredient(ingredient) {
-        const list = document.createElement('div')
-        list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
-        list.innerHTML =
-        `<p id="${ingredient}" class="ingredient">${ingredient}</p>`
-    return list
-    }
-
-    createListAppliance(appliance) {
-        const list = document.createElement('div')
-        list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
-        list.innerHTML =
-        `<p id="${appliance}" class="appliance">${appliance}</p>`
-    return list
-    }
-
-    createListUstensil(ustensil) {
-        const list = document.createElement('div')
-        list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
-        list.innerHTML =
-        `<p id="${ustensil}" class="ustensil">${ustensil}</p>`
-    return list
+    compareIngredient() {
+        // compare les ingredients
     }
 }

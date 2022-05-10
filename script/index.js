@@ -1,5 +1,6 @@
 import {recipes} from '../data/recipes.js'
 import Recipe from './Recipe.js'
+import Search from './Search.js'
 
 
 //Ingrédients
@@ -128,100 +129,10 @@ dropdownUstensil.addEventListener("click", function() {
     }
 })
 
-class DetailRecipe {
-    constructor() {
-        this.vignetteRecette = document.querySelector(".vignette-recette")
-        this.menuIngredient = document.querySelector("#menuIngredient")
-        this.menuItemIngredient = document.querySelector("#menuItemIngredient")
-        this.menuItemAppliance = document.querySelector("#menuItemAppliance")
-        this.menuItemUstensil = document.querySelector("#menuItemUstensil")
-    }
+let arrayRecettes = []
+recipes.forEach(recipe => {
+    arrayRecettes.push(new Recipe(recipe))
+})
 
-    displayRecette() {
-       recipes
-        .map(recipe => new Recipe(recipe))
-        .forEach(recipe => {
-            let listIngredient = ""
-            recipe.ingredients.forEach(ingredient => {
-                //condition: si ingredient.quantity à une valeur différente de undefined alors vérifie la condition suivante; sinon affiche uniquement la liste des ingrédients
-                if (ingredient.quantity !== undefined) {
-                    if (ingredient.unit != undefined) {
-                        listIngredient +=
-                        `<strong>${ingredient.ingredient}:</strong> ${ingredient.quantity} ${ingredient.unit}</br>`
-                    }else{
-                        listIngredient +=
-                        `<strong>${ingredient.ingredient}:</strong> ${ingredient.quantity}</br>`
-                    }
-                }else {
-                    listIngredient +=
-                    `<strong>${ingredient.ingredient}</strong></br>`
-                }
-            })
-            const Template = new Recipe(recipe)
-            this.vignetteRecette.appendChild(Template.createCard(listIngredient))
-        })
-    }
-
-    displayIngredient() {
-        let arrayIngredientDuplicates = []
-        recipes
-        .map(recipe => new Recipe(recipe))
-        .forEach(recipe => {
-            recipe.ingredients.forEach(ingredient => {
-                arrayIngredientDuplicates.push(ingredient.ingredient.toLocaleLowerCase())
-            })
-        })
-        let arrayIngredients = [ ... new Set(arrayIngredientDuplicates)]
-        arrayIngredients.forEach(ingredient => {
-            const Template = new Recipe(ingredient)
-            this.menuItemIngredient.appendChild(Template.createListIngredient(ingredient)) 
-        })
-    }
-
-    displayAppliance() {
-        let arrayApplianceDuplicates = []
-        recipes
-        .map(recipe => new Recipe(recipe))
-        .forEach(recipe => {
-            arrayApplianceDuplicates.push(recipe.appliance.toLocaleLowerCase())
-        })
-        let arrayAppliances = [ ... new Set(arrayApplianceDuplicates)]
-        arrayAppliances.forEach(appliance => {
-            const Template = new Recipe(appliance)
-            this.menuItemAppliance.appendChild(Template.createListAppliance(appliance)) 
-        })
-    }
-
-    displayUstensil() {
-        let arrayUstensilDuplicates = []
-        recipes
-        .map(recipe => new Recipe(recipe))
-        .forEach(recipe => {
-            recipe.ustensils.forEach(ustensil => {
-                arrayUstensilDuplicates.push(ustensil.toLocaleLowerCase())
-            })
-        })
-        let arrayUstensils = [ ... new Set(arrayUstensilDuplicates)]
-        arrayUstensils.forEach(ustensil => {
-            const Template = new Recipe(ustensil)
-            this.menuItemUstensil.appendChild(Template.createListUstensil(ustensil)) 
-        })
-    }
-}
-
-// Permet d'afficher toutes les recettes
-const listRecipe = new DetailRecipe()
-listRecipe.displayRecette()
-
-
-// Permet d'afficher tous les ingrédients dans le bouton filtre ingrédient
-const listIngredient = new DetailRecipe()
-listIngredient.displayIngredient()
-
-// Permet d'afficher tous les ingrédients dans le bouton filtre ingrédient
-const listAppliance = new DetailRecipe()
-listAppliance.displayAppliance()
-
-// Permet d'afficher tous les ingrédients dans le bouton filtre ingrédient
-const listUstensil = new DetailRecipe()
-listUstensil.displayUstensil()
+const search = new Search(arrayRecettes)
+search.compareValue()

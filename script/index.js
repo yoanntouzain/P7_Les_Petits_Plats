@@ -144,5 +144,4 @@ const searchRecipe = document.getElementById("searchRecipe")
 searchRecipe.addEventListener("keyup", function(event) {
     let searchRecipeValue = event.target.value.toLocaleLowerCase().trim()
     search.compareValue(searchRecipeValue)
-    // search.compareRecipeInput(searchRecipeValue)
 })

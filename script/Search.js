@@ -23,9 +23,9 @@ export default class Search {
                 console.log("Entre min 3 caractères")
                 this.vignetteRecette.innerHTML = ""
                 window.setTimeout(() => {
-                    resetSet(this.ingredients)
-                    resetSet(this.appliance)
-                    resetSet(this.ustensils)
+                    this.resetSet(this.ingredients)
+                    this.resetSet(this.appliance)
+                    this.resetSet(this.ustensils)
                     this.recipes.forEach(recipe => {
                         this.vignetteRecette.appendChild(recipe.createCard())
         
@@ -39,7 +39,7 @@ export default class Search {
                             this.ustensils.add(ustensils)
                         })
                     })
-                },500)
+                },300)
             }
 
         } else {
@@ -97,9 +97,9 @@ export default class Search {
 
     compareFiltre(searchRecipeValue) {
         this.vignetteRecette.innerHTML = ""
-        resetSet(this.ingredients)
-        resetSet(this.name)
-        resetSet(this.description)
+        this.resetSet(this.ingredients)
+        this.resetSet(this.name)
+        this.resetSet(this.description)
         this.recipes.forEach(recipe => {
             recipe.ingredients.forEach(ingredient => {
                 if (ingredient.ingredient.toLocaleLowerCase().includes(searchRecipeValue) ||
@@ -122,15 +122,15 @@ export default class Search {
                     this.vignetteRecette.innerHTML = `<p>Aucune recette ne correspond à votre critère… Vous pouvez chercher « tarte aux pommes », « poisson », etc</p>`
                 }
             })
-        },500)
+        },300)
     }
-}
 
-// Permet de vider toute instance contenant l'objet new Set
-function resetSet(element) {
-    if (element.size != 0) {
-        element.clear()
-        return element
+    // Permet de vider toute instance contenant l'objet new Set
+    resetSet(element){
+        if (element.size != 0) {
+            element.clear()
+            return element
+        }
     }
 }
 

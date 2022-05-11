@@ -46,7 +46,7 @@
 }
 
 .descriptifRecette {
-    height: 60%;
+    height: 100%;
     max-height: 240px;
     overflow: hidden;
 }

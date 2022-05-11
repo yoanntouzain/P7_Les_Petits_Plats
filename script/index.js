@@ -129,10 +129,20 @@ dropdownUstensil.addEventListener("click", function() {
     }
 })
 
-let arrayRecettes = []
+let arrayRecipes = []
 recipes.forEach(recipe => {
-    arrayRecettes.push(new Recipe(recipe))
+    arrayRecipes.push(new Recipe(recipe))
 })
 
-const search = new Search(arrayRecettes)
+const search = new Search(arrayRecipes)
 search.compareValue()
+
+
+
+const searchRecipe = document.getElementById("searchRecipe")
+
+searchRecipe.addEventListener("keyup", function(event) {
+    let searchRecipeValue = event.target.value.toLocaleLowerCase().trim()
+    search.compareValue(searchRecipeValue)
+    // search.compareRecipeInput(searchRecipeValue)
+})

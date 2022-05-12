@@ -68,18 +68,3 @@ export default class Recipe {
         // compare les ingredients
     }
 }
-
-// //Cette fonction va comparer la propriétés de mon objet (optionDeFiltrage.name) à toutes les recettes et injecter les recettes filtrées dans ma variable array
-// function compareFiltre(searchRecipeValue) {
-//     recipes.forEach(recette => {
-//         recette.ingredients.forEach(ingredient => {
-//             if (ingredient.ingredient.toLocaleLowerCase().includes(searchRecipeValue)) {
-//                 console.log("ingredient => ", recette);
-//             }
-//         })
-//         if (recette.name.toLocaleLowerCase().includes(searchRecipeValue) || recette.description.toLocaleLowerCase().includes(searchRecipeValue)) {
-//             console.log("name & description => ",  recette);
-//         }
-//     })
-
-// }

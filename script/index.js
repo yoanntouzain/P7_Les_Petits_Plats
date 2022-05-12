@@ -30,6 +30,11 @@ dropdownIngredient.addEventListener("click", function() {
         searchIngredient.classList.remove()
         searchIngredient.style.width = 95 + "%"
         searchIngredient.focus()
+        search.targetValueIngredient()
+        searchIngredient.addEventListener("keyup", function(event) {
+            let searchIngredientValue = event.target.value.toLocaleLowerCase().trim()
+            search.targetValueIngredient(searchIngredientValue)
+        })
     }
     // Quand tu ferme le menu
     else  {
@@ -71,6 +76,11 @@ dropdownAppliance.addEventListener("click", function() {
         searchAppliance.classList.remove()
         searchAppliance.style.width = 95 + "%"
         searchAppliance.focus()
+        search.targetValueAppliance()
+        searchAppliance.addEventListener("keyup", function(event) {
+            let searchApplianceValue = event.target.value.toLocaleLowerCase().trim()
+            search.targetValueAppliance(searchApplianceValue)
+        })
     }
     // Quand tu ferme le menu
     else  {
@@ -114,6 +124,11 @@ dropdownUstensil.addEventListener("click", function() {
         searchUstensil.classList.remove()
         searchUstensil.style.width = 95 + "%"
         searchUstensil.focus()
+        search.targetValueUstensil()
+        searchUstensil.addEventListener("keyup", function(event) {
+            let searchUstensilValue = event.target.value.toLocaleLowerCase().trim()
+            search.targetValueUstensil(searchUstensilValue)
+        })
     }
     // Quand tu ferme le menu
     else  {

@@ -8,10 +8,10 @@
                 -   soit les ingredients
                 -   soit la description
             qui contient la value de searchRecipeValue) {
-                j'affiche les recettes
+                j'affiche mes recettes
             }
             &&
-        Si (ma recette contient tout les ingredients dans les tags && 
+        Si (mes recette contiennent tous les ingredients dans les tags && 
             les ustensils dans les tags && 
             les appareils dans les tags) {
                 j'affiche les recettes

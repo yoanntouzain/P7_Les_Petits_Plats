@@ -76,7 +76,7 @@ export default class Search {
             const list = document.createElement('div')
             list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
             list.innerHTML =
-            `<p id="${ingredient}" class="ingredient">${ingredient}</p>`
+            `<button type="button" id="${ingredient}" class="ingredient btn btn-transparant">${ingredient}</button>`
             this.menuItemIngredient.appendChild(list) 
         })
     }

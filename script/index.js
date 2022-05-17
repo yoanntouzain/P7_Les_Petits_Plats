@@ -1,6 +1,7 @@
 import {recipes} from '../data/recipes.js'
 import Recipe from './Recipe.js'
 import Search from './Search.js'
+import {createTagButton} from "./button.js";
 
 
 //Ingrédients
@@ -159,4 +160,13 @@ const searchRecipe = document.getElementById("searchRecipe")
 searchRecipe.addEventListener("keyup", function(event) {
     let searchRecipeValue = event.target.value.toLocaleLowerCase().trim()
     search.compareValue(searchRecipeValue)
+})
+
+
+const menuItemIngredient = document.getElementById("menuItemIngredient")
+
+menuItemIngredient.addEventListener("click", function(event) {
+    const valueIngredient = event.target.id
+    const typeFiltre = "ingredient"
+    createTagButton(valueIngredient, typeFiltre)
 })

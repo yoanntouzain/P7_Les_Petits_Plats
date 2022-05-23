@@ -81,4 +81,18 @@ export default class Recipe {
     hasDescription(description) {
         return this.description.toLocaleLowerCase().includes(description.toLocaleLowerCase())
     }
+
+    hasAppliances(appliances) {
+        return this.appliances.toLocaleLowerCase().includes(appliances.toLocaleLowerCase())
+    }
+
+    hasUstensils(ustensils) {
+        let result = false
+        this.ustensils.forEach(ustensil => {
+            if (ustensil.toLocaleLowerCase().includes(ustensils.toLocaleLowerCase())) {
+                result = true
+            }
+        })
+        return result
+    }
 }

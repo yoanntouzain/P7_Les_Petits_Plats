@@ -32,8 +32,6 @@ dropdownIngredient.addEventListener("click", function() {
         searchIngredient.style.width = 95 + "%"
         searchIngredient.focus()
         searchIngredient.addEventListener("keyup", function() {
-            // let searchIngredientValue = event.target.value.toLocaleLowerCase().trim()
-            // search.targetValueIngredient(searchIngredientValue)
             search.compareValue()
         })
     }
@@ -77,10 +75,8 @@ dropdownAppliance.addEventListener("click", function() {
         searchAppliance.classList.remove()
         searchAppliance.style.width = 95 + "%"
         searchAppliance.focus()
-        search.targetValueAppliance()
-        searchAppliance.addEventListener("keyup", function(event) {
-            let searchApplianceValue = event.target.value.toLocaleLowerCase().trim()
-            search.targetValueAppliance(searchApplianceValue)
+        searchAppliance.addEventListener("keyup", function() {
+            search.compareValue()
         })
     }
     // Quand tu ferme le menu
@@ -125,10 +121,8 @@ dropdownUstensil.addEventListener("click", function() {
         searchUstensil.classList.remove()
         searchUstensil.style.width = 95 + "%"
         searchUstensil.focus()
-        search.targetValueUstensil()
-        searchUstensil.addEventListener("keyup", function(event) {
-            let searchUstensilValue = event.target.value.toLocaleLowerCase().trim()
-            search.targetValueUstensil(searchUstensilValue)
+        searchUstensil.addEventListener("keyup", function() {
+            search.compareValue()
         })
     }
     // Quand tu ferme le menu

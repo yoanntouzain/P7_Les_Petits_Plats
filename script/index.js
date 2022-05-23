@@ -31,10 +31,10 @@ dropdownIngredient.addEventListener("click", function() {
         searchIngredient.classList.remove()
         searchIngredient.style.width = 95 + "%"
         searchIngredient.focus()
-        search.targetValueIngredient()
-        searchIngredient.addEventListener("keyup", function(event) {
-            let searchIngredientValue = event.target.value.toLocaleLowerCase().trim()
-            search.targetValueIngredient(searchIngredientValue)
+        searchIngredient.addEventListener("keyup", function() {
+            // let searchIngredientValue = event.target.value.toLocaleLowerCase().trim()
+            // search.targetValueIngredient(searchIngredientValue)
+            search.compareValue()
         })
     }
     // Quand tu ferme le menu
@@ -157,9 +157,8 @@ search.compareValue()
 
 const searchRecipe = document.getElementById("searchRecipe")
 
-searchRecipe.addEventListener("keyup", function(event) {
-    let searchRecipeValue = event.target.value.toLocaleLowerCase().trim()
-    search.compareValue(searchRecipeValue)
+searchRecipe.addEventListener("keyup", function() {
+    search.compareValue()
 })
 
 
@@ -168,5 +167,6 @@ const menuItemIngredient = document.getElementById("menuItemIngredient")
 menuItemIngredient.addEventListener("click", function(event) {
     const valueIngredient = event.target.id
     const typeFiltre = "ingredient"
+    search.compareFilterIngredient(valueIngredient)
     createTagButton(valueIngredient, typeFiltre)
 })

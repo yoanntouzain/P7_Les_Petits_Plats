@@ -4,10 +4,13 @@ export default class Search {
         this.searchRecipeValue = ""
         this.searchIngredientValue = ""
         this.vignetteRecette = document.querySelector(".vignette-recette")
+        this.searchRecipe = document.querySelector("#searchRecipe")
+        this.searchIngredient = document.querySelector("#searchIngredient")
         this.menuItemIngredient = document.querySelector("#menuItemIngredient")
         this.searchIngredient = document.querySelector("#searchIngredient")
         this.menuItemAppliance = document.querySelector("#menuItemAppliance")
         this.menuItemUstensil = document.querySelector("#menuItemUstensil")
+        this.resultRecipes = new Set()
         this.name = new Set()
         this.ingredients = new Set()
         this.description = new Set()
@@ -15,59 +18,44 @@ export default class Search {
         this.ustensils = new Set()
     }
 
-    compareValue(searchRecipeValue) {
-        this.searchRecipeValue = searchRecipeValue
-        if (this.searchRecipeValue != undefined) {
-            if (this.searchRecipeValue.length > 2) {
-                console.log("Condition input recette valide")
-                console.log(this.searchRecipeValue);
-                this.compareFilterRecipe(searchRecipeValue)
-                // fonction pour les tags
-            }else{
-                console.log("Entre min 3 caractères")
-                this.vignetteRecette.innerHTML = ""
-                window.setTimeout(() => {
-                    this.clearSet(this.ingredients)
-                    this.clearSet(this.appliance)
-                    this.clearSet(this.ustensils)
-                    this.recipes.forEach(recipe => {
-                        this.vignetteRecette.appendChild(recipe.createCard())
-        
-                        recipe.ingredients.forEach(ingredient => {
-                            this.ingredients.add(ingredient.ingredient.toLocaleLowerCase())
-                        })
-        
-                        this.appliance.add(recipe.appliance.toLocaleLowerCase())
-        
-                        recipe.ustensils.forEach(ustensils => {
-                            this.ustensils.add(ustensils.toLocaleLowerCase())
-                        })
-                    })
-                },300)
-            }
+    compareValue() {
+        this.searchRecipeValue = this.searchRecipe.value.toLocaleLowerCase().trim()
+        this.searchIngredientValue = this.searchIngredient.value.toLocaleLowerCase().trim()
+        console.log(this.searchIngredient.value);
 
-        } else {
-            console.log("Condition input recette invalide")
-            this.vignetteRecette.innerHTML = ""
-            this.recipes.forEach(recipe => {
-                this.vignetteRecette.appendChild(recipe.createCard())
-
-                recipe.ingredients.forEach(ingredient => {
-                    this.ingredients.add(ingredient.ingredient.toLocaleLowerCase())
-                })
-
-                this.appliance.add(recipe.appliance.toLocaleLowerCase())
-
-                recipe.ustensils.forEach(ustensils => {
-                    this.ustensils.add(ustensils.toLocaleLowerCase())
-                })
-            })
+        ///////// Pour filtrer avec le nom ou la description ou les ingrédients
+        if (this.searchRecipeValue != undefined && this.searchRecipeValue.length > 2) {
+            console.log("il y a un filtre recipe actif")
+                this.compareFilterRecipe(this.searchRecipeValue)
+        }else{
+            this.resultRecipes = new Set(this.recipes)
         }
-
+        this.compareTag()
+        // this.targetValueIngredient()
+        this.displayRecipe()
         this.displayIngredients()
         this.displayAppliance()
         this.displayUstensil()
     }
+
+    // Filtre les recettes en comparants la valeur des noms, ou des ingrédients, ou des description des recettes incluant la valeur saisie
+    compareFilterRecipe(searchRecipeValue) {
+        this.vignetteRecette.innerHTML = ""
+        this.clearSet(this.resultRecipes)
+        this.recipes.forEach(recipe => {
+            if (recipe.hasName(searchRecipeValue) || recipe.hasIngredient(searchRecipeValue) || recipe.hasDescription(searchRecipeValue)) {
+                this.resultRecipes.add(recipe)
+            }
+        })
+    }
+
+    compareTag() {
+        this.resultRecipes.forEach(recipe => {
+            console.log(recipe);
+            //comparer les tags
+        })
+    }
+
 
     // Affiche les ingrédients dans le button ingrédient
     displayIngredients() {
@@ -105,43 +93,11 @@ export default class Search {
         })
     }
 
-    // Filtre les recettes en comparants la valeur des noms, ou des ingrédients, ou des description des recettes incluant la valeur saisie
-    compareFilterRecipe(searchRecipeValue) {
-        this.vignetteRecette.innerHTML = ""
-        this.clearSet(this.ingredients)
-        this.clearSet(this.name)
-        this.clearSet(this.description)
-        this.recipes.forEach(recipe => {
-            recipe.ingredients.forEach(ingredient => {
-                if (ingredient.ingredient.toLocaleLowerCase().includes(searchRecipeValue) ||
-                recipe.name.toLocaleLowerCase().includes(searchRecipeValue) ||
-                recipe.description.toLocaleLowerCase().includes(searchRecipeValue)) {
-                    this.ingredients.add(recipe)
-                    this.name.add(recipe)
-                    this.description.add(recipe)
-                }
-                return false
-            })
-        })
-        this.name.add(... this.description, ... this.ingredients)
-        window.setTimeout(() => {
-            this.name.forEach(recipe => {
-                console.log(recipe);
-                if (recipe != undefined) {
-                    this.vignetteRecette.appendChild(recipe.createCard())
-                }else {
-                    this.vignetteRecette.innerHTML = `<p>Aucune recette ne correspond à votre critère… Vous pouvez chercher « tarte aux pommes », « poisson », etc</p>`
-                }
-            })
-        },300)
-    }
-
     // Regarde si le filtre de la barre de recherche principale est appliqué ou non et filtre les ingredients selon les critères appliqués
-    targetValueIngredient(searchIngredientValue) {
-        if (this.searchRecipeValue === undefined || this.searchRecipeValue < 2) {
+    targetValueIngredient() {
+        if (this.searchRecipeValue === undefined || this.searchRecipeValue.length < 3) {
             console.log("Il y a aucune recette rechercher")
-            if (searchIngredientValue != undefined) {
-                this.searchIngredientValue = searchIngredientValue
+            if (this.searchIngredientValue != undefined) {
                 console.log(this.searchIngredientValue);
                 if(this.searchIngredientValue.length > 2) {
                     console.log("Condition input ingredient valide")
@@ -152,27 +108,35 @@ export default class Search {
             } return false
         }else{
             console.log("La barre de recherche principale à deja appliquer un filtre")
+            console.log(this.ingredients);
+            console.log(this.searchIngredientValue);
             // filtrer les ingredients par rapport au recette afficher
         }
     }
 
     // Filtre les recettes par rapport au ingredients
     compareFilterIngredient(searchIngredientValue) {
+        console.log(this.resultRecipes)
         this.menuItemIngredient.innerHTML = ""
+        this.vignetteRecette.innerHTML = ""
         this.clearSet(this.ingredients)
         this.recipes.forEach(recipe => {
             recipe.ingredients.forEach(ingredient => {
                 if (ingredient.ingredient.toLocaleLowerCase().includes(searchIngredientValue)) {
                     this.ingredients.add(ingredient.ingredient.toLocaleLowerCase())
+                    this.resultRecipes.add(recipe)
+                    // this.vignetteRecette.appendChild(recipe.createCard())
                 }return false
             })
         })
         window.setTimeout(() => {
             if (this.ingredients.size != 0) {
+                console.log(this.ingredients);
                 this.displayIngredients()
             }else {
                 this.menuItemIngredient.innerHTML = `<p>Aucun ingrédient ne correspond à votre critère… Vous pouvez chercher « coco », « poisson », etc</p>`
             }
+            this.displayRecipe()
         },300)
     }
 
@@ -254,6 +218,17 @@ export default class Search {
         },300)
     }
 
+    displayRecipe() {
+        if (this.resultRecipes.size != 0) {
+            this.resultRecipes.forEach(recipe => {
+                this.vignetteRecette.appendChild(recipe.createCard())
+            })
+        } else {
+            console.log("Il n'y a aucune recette");
+        }
+    }
+
+
     // Permet de vider toute instance contenant l'objet new Set
     addSet(element) {
         if (element.size != 0) {
@@ -269,4 +244,3 @@ export default class Search {
         }
     }
 }
-

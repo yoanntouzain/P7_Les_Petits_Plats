@@ -64,7 +64,21 @@ export default class Recipe {
         return card
     }
 
-    compareIngredient() {
-        // compare les ingredients
+    hasName(name) {
+        return this.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())
+    }
+
+    hasIngredient(ingredient) {
+        let result = false
+        this.ingredients.forEach(ing => {
+            if (ing.ingredient.toLocaleLowerCase().includes(ingredient.toLocaleLowerCase())) {
+                result = true
+            }
+        })
+        return result
+    }
+
+    hasDescription(description) {
+        return this.description.toLocaleLowerCase().includes(description.toLocaleLowerCase())
     }
 }

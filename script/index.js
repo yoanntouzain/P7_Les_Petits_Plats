@@ -161,6 +161,24 @@ const menuItemIngredient = document.getElementById("menuItemIngredient")
 menuItemIngredient.addEventListener("click", function(event) {
     const valueIngredient = event.target.id
     const typeFiltre = "ingredient"
-    search.compareFilterIngredient(valueIngredient)
     createTagButton(valueIngredient, typeFiltre)
+    search.compareValue()
+})
+
+const menuItemAppliance = document.getElementById("menuItemAppliance")
+
+menuItemAppliance.addEventListener("click", function(event) {
+    const valueAppliance = event.target.id
+    const typeFiltre = "appliance"
+    createTagButton(valueAppliance, typeFiltre)
+    search.compareValue()
+})
+
+const menuItemUstensil = document.getElementById("menuItemUstensil")
+
+menuItemUstensil.addEventListener("click", function(event) {
+    const valueUstensil = event.target.id
+    const typeFiltre = "ustensil"
+    createTagButton(valueUstensil, typeFiltre)
+    search.compareValue()
 })

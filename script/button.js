@@ -8,7 +8,6 @@ export function createTagButton(element, typeFiltre) {
     button.innerHTML = element + " " + '<span class="croix border border-white rounded-circle ml-2">&times;</span>'
     button.value = typeFiltre
     barrePrincipale.insertAdjacentElement('afterend', button)
-    console.log(button);
     switch (button.value) {
         case "ingredient":
             button.classList.add("btn-primary")

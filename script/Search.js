@@ -19,6 +19,7 @@ export default class Search {
         this.description = new Set()
         this.appliance = new Set()
         this.ustensils = new Set()
+        this.storageRecipes = []
     }
 
     compareValue() {
@@ -26,7 +27,6 @@ export default class Search {
         this.searchIngredientValue = this.searchIngredient.value.toLocaleLowerCase().trim()
         this.searchApplianceValue = this.searchAppliance.value.toLocaleLowerCase().trim()
         this.searchUstensilValue = this.searchUstensil.value.toLocaleLowerCase().trim()
-        console.log(this.searchIngredient.value);
         ///////// Pour filtrer avec le nom ou la description ou les ingrédients
         if (this.searchRecipeValue != undefined && this.searchRecipeValue.length > 2) {
             console.log("il y a un filtre recipe actif")
@@ -36,7 +36,7 @@ export default class Search {
                 this.compareFilterUstensil(this.searchUstensilValue)
 
         }else{
-            this.resultRecipes = this.recipes
+            this.resultRecipes = new Set(this.recipes)
             this.recipes.forEach(recipe => {
 
                 this.appliance.add(recipe.appliance)
@@ -66,7 +66,6 @@ export default class Search {
             }
         }
         this.compareTag()
-        // this.targetValueIngredient()
         this.displayIngredients()
         this.displayAppliance()
         this.displayUstensil()
@@ -87,34 +86,62 @@ export default class Search {
         console.log(this.resultRecipes);
     }
 
+    compareTag() {
+        const tags = document.querySelectorAll(".tag")
+        this.storageRecipes = [...this.resultRecipes];
+        this.searchIngredientValue = ""
+        this.searchApplianceValue = ""
+        this.searchApplianceValue = ""
+        if (tags.length != 0) {
+            this.clearSet(this.resultRecipes)
+            tags.forEach(tag => {
+                switch (tag.value) {
+                    case "ingredient":
+                        this.searchIngredientValue += tag.id
+                        break;
+
+                    case "appliance":
+                        this.searchApplianceValue += tag.id
+                        break;
+
+                    case "ustensil":
+                        this.searchUstensilValue += tag.id
+                        break;
+                }
+            })
+            console.log(this.searchIngredientValue);
+            this.storageRecipes.forEach(recipe => {
+                if (recipe.hasIngredient(this.searchIngredientValue) &&
+                    recipe.hasAppliances(this.searchApplianceValue) &&
+                    recipe.hasUstensils(this.searchUstensilValue)) {
+                    this.resultRecipes.add(recipe)
+                }
+            })
+            this.compareFilterIngredient(this.searchIngredientValue)
+            this.compareFilterAppliance(this.searchApplianceValue)
+            this.compareFilterUstensil(this.searchUstensilValue)
+            console.log(this.resultRecipes)
+        } else {
+            console.log("aucune tag");
+        }
+    }
+
     // Filtre les recettes par rapport au ingredients
     compareFilterIngredient(searchIngredientValue) {
         this.clearSet(this.ingredients)
+        this.storageRecipes = [...this.resultRecipes]
+        this.clearSet(this.resultRecipes)
+        console.log(searchIngredientValue);
 
-        this.resultRecipes.forEach(recipe => {
+        this.storageRecipes.forEach(recipe => {
             recipe.ingredients.forEach(ing => {
                 if (ing.ingredient.toLocaleLowerCase().includes(searchIngredientValue)) {
-                    this.ingredients.add(ing.ingredient.toLocaleLowerCase())
+                    // this.ingredients.add(ing.ingredient.toLocaleLowerCase())
+                    this.resultRecipes.add(recipe)
                 }
             })
         })
-        // window.setTimeout(() => {
-        //     if (this.ingredients.size != 0) {
-        //         console.log(this.ingredients);
-        //         this.displayIngredients()
-        //     }else {
-        //         this.menuItemIngredient.innerHTML = `<p>Aucun ingrédient ne correspond à votre critère… Vous pouvez chercher « coco », « poisson », etc</p>`
-        //     }
-        //     this.displayRecipe()
-        // },300)
-    }
-
-    compareTag() {
-        const tag = document.querySelectorAll(".tag")
-        console.log(tag);
-        // this.resultRecipes.forEach(recipe => {
-        //     //comparer les tags
-        // })
+        console.log(this.ingredients);
     }
 
     // Filtre les recettes par rapport au appliance
@@ -131,10 +158,12 @@ export default class Search {
     // Filtre les recettes par rapport au ustensil
     compareFilterUstensil(searchUstensilValue) {
         this.clearSet(this.ustensils)
-        this.recipes.forEach(recipe => {
+        this.storageRecipes = [...this.resultRecipes]
+        this.clearSet(this.resultRecipes)
+        this.storageRecipes.forEach(recipe => {
             recipe.ustensils.forEach(ustensil => {
                 if (ustensil.toLocaleLowerCase().includes(searchUstensilValue)) {
-                    this.ustensils.add(ustensil.toLocaleLowerCase())
+                    this.resultRecipes.add(recipe)
                 }
             })
         })
@@ -142,6 +171,7 @@ export default class Search {
 
     displayRecipe() {
         this.vignetteRecette.innerHTML = ""
+        console.log(this.resultRecipes);
         if (this.resultRecipes.size != 0) {
             this.resultRecipes.forEach(recipe => {
                 this.vignetteRecette.appendChild(recipe.createCard())
@@ -156,13 +186,15 @@ export default class Search {
     displayIngredients() {
         this.menuItemIngredient.innerHTML = ""
         console.log(this.ingredients);
-        if (this.ingredients.size != 0) {
-            this.ingredients.forEach(ingredient => {
+        if (this.resultRecipes.size != 0) {
+            this.resultRecipes.forEach(recipe => {
+                recipe.ingredients.forEach(ing => {
                 const list = document.createElement('div')
                 list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
                 list.innerHTML =
-                `<button type="button" id="${ingredient}" class="ingredient btn btn-transparant">${ingredient}</button>`
+                `<button type="button" id="${ing.ingredient.toLocaleLowerCase()}" class="ingredient btn btn-transparant">${ing.ingredient.toLocaleLowerCase()}</button>`
                 this.menuItemIngredient.appendChild(list)
+                })
             })
         }else {
             this.menuItemIngredient.innerHTML = `<p class="ml-3 mr-3 mt-3">Aucun ingrédient ne correspond à votre critère… Vous pouvez chercher « coco », « poisson », etc</p>`
@@ -171,13 +203,13 @@ export default class Search {
 
     // Affiche les appareils dans le button appareil
     displayAppliance() {
+        this.menuItemAppliance.innerHTML = ""
         if (this.appliance.size != 0) {
-            this.menuItemAppliance.innerHTML = ""
             this.appliance.forEach(appliance => {
                 const list = document.createElement('div')
                 list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
                 list.innerHTML =
-                `<p id="${appliance}" class="appliance">${appliance}</p>`
+                `<button type="button" id="${appliance.toLocaleLowerCase()}" class="appliance btn btn-transparant">${appliance.toLocaleLowerCase()}</bouton>`
                 this.menuItemAppliance.appendChild(list)
             })
         } else {
@@ -187,14 +219,16 @@ export default class Search {
 
     // Affiche les ustensils dans le button ustensil
     displayUstensil() {
-        if (this.ustensils.size != 0) {
-            this.menuItemUstensil.innerHTML = ""
-            this.ustensils.forEach(ustensil => {
-                const list = document.createElement('div')
-                list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
-                list.innerHTML =
-                `<p id="${ustensil}" class="ustensil">${ustensil}</p>`
-                    this.menuItemUstensil.appendChild(list)
+        this.menuItemUstensil.innerHTML = ""
+        if (this.resultRecipes.size != 0) {
+            this.resultRecipes.forEach(recipe => {
+                recipe.ustensils.forEach(ustensil => {
+                    const list = document.createElement('div')
+                    list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
+                    list.innerHTML =
+                    `<button type="button" id="${ustensil.toLocaleLowerCase()}" class="ustensil btn btn-transparant">${ustensil.toLocaleLowerCase()}</bouton>`
+                        this.menuItemUstensil.appendChild(list)
+                })
             })
         } else {
             this.menuItemUstensil.innerHTML = `<p class="ml-3 mr-3 mt-3">Aucun ingrédient ne correspond à votre critère… Vous pouvez chercher « fouet », « louche », etc</p>`

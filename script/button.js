@@ -20,3 +20,15 @@ export function createTagButton(element, typeFiltre) {
             return button
     }
 }
+
+//Permet de fermer le bouton tag
+export function closeTagButton(search) {
+    const theTags = document.querySelectorAll(".tag")
+    console.log(theTags);
+    theTags.forEach(tag => {
+        tag.addEventListener('click', function(){
+            tag.remove()
+            search.compareValue()
+        })
+    })
+}

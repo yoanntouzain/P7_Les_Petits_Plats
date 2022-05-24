@@ -2,6 +2,7 @@ import {recipes} from '../data/recipes.js'
 import Recipe from './Recipe.js'
 import Search from './Search.js'
 import {createTagButton} from "./button.js";
+import {closeTagButton} from "./button.js";
 
 
 //Ingrédients
@@ -159,26 +160,32 @@ searchRecipe.addEventListener("keyup", function() {
 const menuItemIngredient = document.getElementById("menuItemIngredient")
 
 menuItemIngredient.addEventListener("click", function(event) {
+    search.deleteSuggestion(searchIngredient)
     const valueIngredient = event.target.id
     const typeFiltre = "ingredient"
     createTagButton(valueIngredient, typeFiltre)
     search.compareValue()
+    closeTagButton(search)
 })
 
 const menuItemAppliance = document.getElementById("menuItemAppliance")
 
 menuItemAppliance.addEventListener("click", function(event) {
+    search.deleteSuggestion(searchAppliance)
     const valueAppliance = event.target.id
     const typeFiltre = "appliance"
     createTagButton(valueAppliance, typeFiltre)
     search.compareValue()
+    closeTagButton(search)
 })
 
 const menuItemUstensil = document.getElementById("menuItemUstensil")
 
 menuItemUstensil.addEventListener("click", function(event) {
+    search.deleteSuggestion(searchUstensil)
     const valueUstensil = event.target.id
     const typeFiltre = "ustensil"
     createTagButton(valueUstensil, typeFiltre)
     search.compareValue()
+    closeTagButton(search)
 })

@@ -250,4 +250,13 @@ export default class Search {
             return element
         }
     }
+
+    //Permet de désactiver les suggestions
+    deleteSuggestion(element) {
+        if (element != null) {
+            element.setAttribute("autocomplete", "off")
+            return true
+        }
+        return false
+    }
 }

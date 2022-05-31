@@ -32,8 +32,6 @@ dropdownIngredient.addEventListener("click", function() {
         searchIngredient.style.width = 95 + "%"
         searchIngredient.focus()
         searchIngredient.addEventListener("keyup", function() {
-            // let searchIngredientValue = event.target.value.toLocaleLowerCase().trim()
-            // search.targetValueIngredient(searchIngredientValue)
             search.compareValue()
         })
     }
@@ -77,10 +75,8 @@ dropdownAppliance.addEventListener("click", function() {
         searchAppliance.classList.remove()
         searchAppliance.style.width = 95 + "%"
         searchAppliance.focus()
-        search.targetValueAppliance()
-        searchAppliance.addEventListener("keyup", function(event) {
-            let searchApplianceValue = event.target.value.toLocaleLowerCase().trim()
-            search.targetValueAppliance(searchApplianceValue)
+        searchAppliance.addEventListener("keyup", function() {
+            search.compareValue()
         })
     }
     // Quand tu ferme le menu
@@ -125,10 +121,8 @@ dropdownUstensil.addEventListener("click", function() {
         searchUstensil.classList.remove()
         searchUstensil.style.width = 95 + "%"
         searchUstensil.focus()
-        search.targetValueUstensil()
-        searchUstensil.addEventListener("keyup", function(event) {
-            let searchUstensilValue = event.target.value.toLocaleLowerCase().trim()
-            search.targetValueUstensil(searchUstensilValue)
+        searchUstensil.addEventListener("keyup", function() {
+            search.compareValue()
         })
     }
     // Quand tu ferme le menu
@@ -162,11 +156,59 @@ searchRecipe.addEventListener("keyup", function() {
 })
 
 
+//ingredient
 const menuItemIngredient = document.getElementById("menuItemIngredient")
 
 menuItemIngredient.addEventListener("click", function(event) {
+    search.deleteSuggestion(searchIngredient)
     const valueIngredient = event.target.id
     const typeFiltre = "ingredient"
-    search.compareFilterIngredient(valueIngredient)
-    createTagButton(valueIngredient, typeFiltre)
+    let button = createTagButton(valueIngredient, typeFiltre)
+    button.addEventListener("click", () => {
+        let index = search.allValueTagIngredients.indexOf(valueIngredient)
+        search.allValueTagIngredients.splice(index, 1)
+        search.compareValue()
+        button.remove()
+    })
+    search.allValueTagIngredients.push(valueIngredient)
+    console.log(search.allValueTagIngredients);
+    search.compareValue()
+})
+
+
+//appliance
+const menuItemAppliance = document.getElementById("menuItemAppliance")
+
+menuItemAppliance.addEventListener("click", function(event) {
+    search.deleteSuggestion(searchAppliance)
+    const valueAppliance = event.target.id
+    const typeFiltre = "appliance"
+    let button = createTagButton(valueAppliance, typeFiltre)
+    button.addEventListener("click", () => {
+        let index = search.allValueTagAppliances.indexOf(valueAppliance)
+        search.allValueTagAppliances.splice(index, 1)
+        search.compareValue()
+        button.remove()
+    })
+    search.allValueTagAppliances.push(valueAppliance)
+    search.compareValue()
+})
+
+//ustensil
+const menuItemUstensil = document.getElementById("menuItemUstensil")
+
+menuItemUstensil.addEventListener("click", function(event) {
+    search.deleteSuggestion(searchUstensil)
+    const valueUstensil = event.target.id
+    const typeFiltre = "ustensil"
+    let button = createTagButton(valueUstensil, typeFiltre)
+
+    button.addEventListener("click", () => {
+        let index = search.allValueTagUstensils.indexOf(valueUstensil)
+        search.allValueTagUstensils.splice(index, 1)
+        search.compareValue()
+        button.remove()
+    })
+    search.allValueTagUstensils.push(valueUstensil)
+    search.compareValue()
 })

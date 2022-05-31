@@ -65,20 +65,97 @@ export default class Recipe {
     }
 
     hasName(name) {
-        return this.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())
+        if (this.name != undefined && this.name != "") {
+            return this.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())
+        }
     }
 
     hasIngredient(ingredient) {
         let result = false
-        this.ingredients.forEach(ing => {
-            if (ing.ingredient.toLocaleLowerCase().includes(ingredient.toLocaleLowerCase())) {
-                result = true
-            }
-        })
+        if (this.ingredients != undefined && this.ingredients != "") {
+            this.ingredients.forEach(ing => {
+                if (ing.ingredient.toLocaleLowerCase().includes(ingredient.toLocaleLowerCase())) {
+                    result = true
+                }
+            })
+        }
         return result
     }
 
     hasDescription(description) {
-        return this.description.toLocaleLowerCase().includes(description.toLocaleLowerCase())
+        if (this.description != undefined && this.description != "") {
+            return this.description.toLocaleLowerCase().includes(description.toLocaleLowerCase())
+        }
+    }
+
+    hasAppliances(appliances) {
+        if (this.appliance != undefined && this.appliance != "") {
+            return this.appliance.toLocaleLowerCase().includes(appliances.toLocaleLowerCase())
+        }
+    }
+
+    hasUstensils(ustensils) {
+        let result = false
+        if (this.ustensils != undefined && this.ustensils != "") {
+            this.ustensils.forEach(ustensil => {
+                if (ustensil.toLocaleLowerCase().includes(ustensils.toLocaleLowerCase())) {
+                    result = true
+                }
+            })
+        }
+        return result
+    }
+
+
+
+
+    containIngredients(ingredients) {
+        let result = 0
+        if (this.ingredients != undefined && this.ingredients != "") {
+            this.ingredients.forEach(ing => {
+                ingredients.forEach(tag => {
+                    if (ing.ingredient.toLocaleLowerCase().includes(tag.toLocaleLowerCase())) {
+                        result++
+                    }
+                })
+
+            })
+        }
+        return result == ingredients.length
+    }
+
+
+
+
+
+    containAppliances(appliance) {
+        let result = 0
+        if (this.appliance != undefined && this.appliance != "" && appliance.length != 0 && appliance != undefined) {
+            if (this.appliance.toLocaleLowerCase().includes(appliance)) {
+                result++
+            }
+        }
+        return result == appliance.length
+    }
+
+
+
+
+
+
+
+    containUstensils(ustensils) {
+        let result = 0
+        if (this.ustensils != undefined && this.ustensils != "") {
+            this.ustensils.forEach(ustensil => {
+                ustensils.forEach(tag => {
+                    if (ustensil.toLocaleLowerCase().includes(tag.toLocaleLowerCase())) {
+                        result++
+                    }
+                })
+
+            })
+        }
+        return result == ustensils.length
     }
 }

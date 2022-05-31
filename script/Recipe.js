@@ -105,4 +105,57 @@ export default class Recipe {
         }
         return result
     }
+
+
+
+
+    containIngredients(ingredients) {
+        let result = 0
+        if (this.ingredients != undefined && this.ingredients != "") {
+            this.ingredients.forEach(ing => {
+                ingredients.forEach(tag => {
+                    if (ing.ingredient.toLocaleLowerCase().includes(tag.toLocaleLowerCase())) {
+                        result++
+                    }
+                })
+
+            })
+        }
+        return result == ingredients.length
+    }
+
+
+
+
+
+    containAppliances(appliance) {
+        let result = 0
+        if (this.appliance != undefined && this.appliance != "" && appliance.length != 0 && appliance != undefined) {
+            if (this.appliance.toLocaleLowerCase().includes(appliance)) {
+                result++
+            }
+        }
+        return result == appliance.length
+    }
+
+
+
+
+
+
+
+    containUstensils(ustensils) {
+        let result = 0
+        if (this.ustensils != undefined && this.ustensils != "") {
+            this.ustensils.forEach(ustensil => {
+                ustensils.forEach(tag => {
+                    if (ustensil.toLocaleLowerCase().includes(tag.toLocaleLowerCase())) {
+                        result++
+                    }
+                })
+
+            })
+        }
+        return result == ustensils.length
+    }
 }

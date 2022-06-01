@@ -121,7 +121,7 @@ export default class Recipe {
 
             })
         }
-        return result == ingredients.length
+        return result >= ingredients.length
     }
 
 
@@ -135,7 +135,7 @@ export default class Recipe {
                 result++
             }
         }
-        return result == appliance.length
+        return result >= appliance.length
     }
 
 
@@ -156,6 +156,6 @@ export default class Recipe {
 
             })
         }
-        return result == ustensils.length
+        return result >= ustensils.length
     }
 }

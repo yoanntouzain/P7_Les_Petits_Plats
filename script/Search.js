@@ -156,7 +156,6 @@ export default class Search {
         if (this.resultRecipes.size != 0) {
             this.resultRecipes.forEach(recipe => {
                 this.vignetteRecette.appendChild(recipe.createCard())
-                console.log(recipe.name);
             })
         } else {
             this.vignetteRecette.innerHTML = `« Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.`

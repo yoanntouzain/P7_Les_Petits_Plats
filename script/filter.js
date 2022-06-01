@@ -1,4 +1,14 @@
-export function dropdownListener(type, searchClass) {
+import {createTagButton} from "./button.js";
+
+//Event recipes
+export function searchBarRecipes(searchRecipe, searchClass) {
+    searchRecipe.addEventListener("keyup", function() {
+        searchClass.compareValue()
+    })
+}
+
+export function dropdownListener(type, searchClass, searchRecipe) {
+
     // Variables
     const dropdown = document.getElementById("dropdown"+type)
     const menu = document.getElementById("menu"+type)
@@ -6,9 +16,10 @@ export function dropdownListener(type, searchClass) {
     const arrowDown = document.getElementById("arrowDown"+type)
     const arrowUp = document.getElementById("arrowUp"+type)
     const sizeBtn = document.getElementById("sizeBtn"+type)
+    const escape = " "
     
     
-    // Evenement
+    // Event
     dropdown.addEventListener("click", function() {
         const span = document.getElementById("span"+type)
         const search = document.getElementById("search"+type)
@@ -26,11 +37,58 @@ export function dropdownListener(type, searchClass) {
             search.classList.remove()
             search.style.width = 95 + "%"
             search.focus()
-            search.addEventListener("keyup", function() {
-                // a remplacer le compareValue par la méthode qui filtera les ingrédent en fonction des recettes afficher
-                searchClass.compareValue()
-                //////////////////////
-            })
+            switch (type) {
+                case "Ingredient":
+                    console.log(type);
+                    search.addEventListener("keyup", function(event) {
+                        const searchRecipeValue = searchRecipe.value.toLocaleLowerCase().trim()
+                        const searchValue = event.target.value.toLocaleLowerCase().trim()
+                        if (event.key === escape){
+                            event.preventDefault()
+                        }
+                        if (searchRecipeValue != undefined && searchRecipeValue.length > 2) {
+                            console.log(searchRecipeValue);
+                            searchClass.compareFilterIngredient(searchValue)
+                            searchClass.displayIngredients()
+                        }else {
+                            console.log("recette vide");
+                            console.log(searchRecipeValue);
+                            if (searchValue.length > 2) {
+                                searchClass.compareFilterIngredient(searchValue)
+                                searchClass.displayIngredients()
+                            }
+                        }
+                    })
+                break
+
+                case "Appliance":
+                    console.log(type);
+                    search.addEventListener("keyup", function(event) {
+                        const searchValue = event.target.value.toLocaleLowerCase().trim()
+                        if (event.key === escape){
+                            event.preventDefault()
+                        }
+                        if (searchValue.length > 2) {
+                            searchClass.compareFilterAppliance(searchValue)
+                            searchClass.displayAppliances()
+                        }
+                    })
+                break
+
+                case "Ustensil":
+                    console.log(type);
+                    search.addEventListener("keyup", function(event) {
+                        const searchValue = event.target.value.toLocaleLowerCase().trim()
+                        if (event.key === escape){
+                            event.preventDefault()
+                        }
+                        if (searchValue.length > 2) {
+                            searchClass.compareFilterUstensil(searchValue)
+                            searchClass.displayUstensils()
+                        }
+                    })
+                break
+            }
         }
         // Quand tu ferme le menu
         else  {
@@ -44,5 +102,59 @@ export function dropdownListener(type, searchClass) {
             sizeBtn.classList.add("col-2")
             search.style.width = 90 + "%"
         }
+    })
+}
+
+export function elementClick(type, searchClass) {
+    
+    // Variables
+    const menuItem = document.getElementById("menuItem"+type)
+    
+    // Event
+    menuItem.addEventListener("click", function(event) {
+        const value = event.target.id
+        const typeFiltre = type.toLocaleLowerCase()
+        let button = createTagButton(value, typeFiltre)
+        switch (type) {
+            case "Ingredient":
+                button.addEventListener("click", () => {
+                    console.log("button ingredient");
+                    let index = searchClass.allValueTagIngredients.indexOf(value)
+                    searchClass.allValueTagIngredients.splice(index, 1)
+                    searchClass.compareValue()
+                    button.remove()
+                })
+                searchClass.allValueTagIngredients.push(value)
+                searchClass.compareValue()
+                
+                break;
+
+            case "Appliance":
+                button.addEventListener("click", () => {
+                    console.log("button appliance");
+                    let index = searchClass.allValueTagAppliances.indexOf(value)
+                    searchClass.allValueTagAppliances.splice(index, 1)
+                    searchClass.compareValue()
+                    button.remove()
+                })
+                searchClass.allValueTagAppliances.push(value)
+                searchClass.compareValue()
+                
+                break;
+
+            case "Ustensil":
+                button.addEventListener("click", () => {
+                    console.log("button ustensil");
+                    let index = searchClass.allValueTagUstensils.indexOf(value)
+                    searchClass.allValueTagUstensils.splice(index, 1)
+                    searchClass.compareValue()
+                    button.remove()
+                })
+                searchClass.allValueTagUstensils.push(value)
+                searchClass.compareValue()
+                
+                break;
+        }
+        searchClass.compareValue()
     })
 }

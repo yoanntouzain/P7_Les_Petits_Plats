@@ -18,7 +18,7 @@ export default class Recipe {
 
         let listIngredient = ""
         this.ingredients.forEach(ingredient => {
-            //condition: si ingredient.quantity à une valeur différente de undefined alors vérifie la condition suivante; sinon affiche uniquement la liste des ingrédients
+            //Permet d'afficher chaque ingrédient suivi de sa quantité et de son unité si il en possède une
             if (ingredient.quantity !== undefined) {
                 if (ingredient.unit != undefined) {
                     listIngredient +=

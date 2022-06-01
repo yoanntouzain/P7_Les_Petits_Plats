@@ -26,7 +26,6 @@ export default class Search {
     }
 
     compareValue() {
-
         this.searchRecipeValue = this.searchRecipe.value.toLocaleLowerCase().trim()
         this.searchIngredientValue = this.searchIngredient.value.toLocaleLowerCase().trim()
         this.searchApplianceValue = this.searchAppliance.value.toLocaleLowerCase().trim()
@@ -57,14 +56,14 @@ export default class Search {
         this.compareTag()
         this.resultRecipes.forEach(recipe => {
 
-            this.appliance.add(recipe.appliance)
+            this.appliance.add(recipe.appliance.toLocaleLowerCase())
 
             recipe.ingredients.forEach(ing => {
-                this.ingredients.add(ing.ingredient)
+                this.ingredients.add(ing.ingredient.toLocaleLowerCase())
             })
 
             recipe.ustensils.forEach(ustensil => {
-                this.ustensils.add(ustensil)
+                this.ustensils.add(ustensil.toLocaleLowerCase())
             })
         })
         this.displayIngredients()
@@ -93,7 +92,6 @@ export default class Search {
         this.searchIngredientValue = ""
         this.searchApplianceValue = ""
         this.searchApplianceValue = ""
-        console.log(this.resultRecipes);
         if (tags.length != 0) {
             this.clearSet(this.resultRecipes)
             
@@ -118,11 +116,12 @@ export default class Search {
         this.storageRecipes.forEach(recipe => {
             recipe.ingredients.forEach(ing => {
                 if (ing.ingredient.toLocaleLowerCase().includes(searchIngredientValue)) {
-                    // this.ingredients.add(ing.ingredient.toLocaleLowerCase())
+                    this.ingredients.add(ing.ingredient.toLocaleLowerCase())
                     this.resultRecipes.add(recipe)
                 }
             })
         })
+        this.clearSet(this.storageRecipes)
         console.log(this.ingredients);
     }
 
@@ -149,14 +148,15 @@ export default class Search {
                 }
             })
         })
+        this.clearSet(this.storageRecipes)
     }
 
     displayRecipe() {
         this.vignetteRecette.innerHTML = ""
-        console.log(this.resultRecipes);
         if (this.resultRecipes.size != 0) {
             this.resultRecipes.forEach(recipe => {
                 this.vignetteRecette.appendChild(recipe.createCard())
+                console.log(recipe.name);
             })
         } else {
             this.vignetteRecette.innerHTML = `« Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.`
@@ -167,7 +167,6 @@ export default class Search {
     // Affiche les ingrédients dans le button ingrédient
     displayIngredients() {
         this.menuItemIngredient.innerHTML = ""
-        console.log(this.ingredients);
         if (this.resultRecipes.size != 0) {
             this.ingredients.forEach(ing => {
             const list = document.createElement('div')

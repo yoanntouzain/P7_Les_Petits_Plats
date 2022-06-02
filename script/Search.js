@@ -56,18 +56,18 @@ export default class Search {
 
         this.compareTag()
 
-        this.resultRecipes.forEach(recipe => {
+        for (const recipe of this.resultRecipes) {
 
             this.appliance.add(recipe.appliance.toLocaleLowerCase())
 
-            recipe.ingredients.forEach(ing => {
+            for (const ing of recipe.ingredients) {
                 this.ingredients.add(ing.ingredient.toLocaleLowerCase())
-            })
+            }
 
-            recipe.ustensils.forEach(ustensil => {
+            for (const ustensil of recipe.ustensils) {
                 this.ustensils.add(ustensil.toLocaleLowerCase())
-            })
-        })
+            }
+        }
 
         this.displayIngredients()
         this.displayAppliance()
@@ -81,11 +81,11 @@ export default class Search {
     // Filtre les recettes en comparants la valeur des noms, ou des ingrédients, ou des description des recettes incluant la valeur saisie
     compareFilterRecipe(searchRecipeValue) {
         this.clearSet(this.resultRecipes)
-        this.recipes.forEach(recipe => {
+        for (const recipe of this.recipes) {
             if (recipe.hasName(searchRecipeValue) || recipe.hasIngredient(searchRecipeValue) || recipe.hasDescription(searchRecipeValue)) {
                 this.resultRecipes.add(recipe)
             }
-        })
+        }
         console.log(this.resultRecipes);
     }
 
@@ -99,13 +99,13 @@ export default class Search {
         if (tags.length != 0) {
             this.clearSet(this.resultRecipes)
             
-            this.storageRecipes.forEach(recipe => {
+            for (const recipe of this.storageRecipes) {
                 if (recipe.containIngredients(this.allValueTagIngredients) &&
                     recipe.containAppliances(this.allValueTagAppliances) &&
                     recipe.containUstensils(this.allValueTagUstensils)) {
                     this.resultRecipes.add(recipe)
                 }
-            })
+            }
         } else {
             console.log("aucune tag");
         }
@@ -117,14 +117,14 @@ export default class Search {
         this.storageRecipes = [...this.resultRecipes]
         this.clearSet(this.resultRecipes)
 
-        this.storageRecipes.forEach(recipe => {
-            recipe.ingredients.forEach(ing => {
+        for (const recipe of this.storageRecipes) {
+            for (const ing of recipe.ingredients) {
                 if (ing.ingredient.toLocaleLowerCase().includes(searchIngredientValue)) {
                     this.ingredients.add(ing.ingredient.toLocaleLowerCase())
                     this.resultRecipes.add(recipe)
                 }
-            })
-        })
+            }
+        }
         console.log(this.ingredients)
         this.storageRecipes.splice()
     }
@@ -135,12 +135,12 @@ export default class Search {
         this.storageRecipes = [...this.resultRecipes]
         this.clearSet(this.resultRecipes)
 
-        this.storageRecipes.forEach(recipe => {
+        for (const recipe of this.storageRecipes) {
             if (recipe.appliance.toLocaleLowerCase().includes(searchApplianceValue)) {
                 this.appliance.add(recipe.appliance.toLocaleLowerCase())
                 this.resultRecipes.add(recipe)
             }
-        })
+        }
         console.log(this.appliance)
         this.storageRecipes.splice()
     }
@@ -151,14 +151,14 @@ export default class Search {
         this.storageRecipes = [...this.resultRecipes]
         this.clearSet(this.resultRecipes)
 
-        this.storageRecipes.forEach(recipe => {
-            recipe.ustensils.forEach(ustensil => {
+        for (const recipe of this.storageRecipes) {
+            for (const ustensil of recipe.ustensils) {
                 if (ustensil.toLocaleLowerCase().includes(searchUstensilValue)) {
                     this.ustensils.add(ustensil)
                     this.resultRecipes.add(recipe)
                 }
-            })
-        })
+            }
+        }
         console.log(this.ustensils)
         this.storageRecipes.splice()
     }
@@ -167,9 +167,9 @@ export default class Search {
     displayRecipe() {
         this.vignetteRecette.innerHTML = ""
         if (this.resultRecipes.size != 0) {
-            this.resultRecipes.forEach(recipe => {
+            for (const recipe of this.resultRecipes) {
                 this.vignetteRecette.appendChild(recipe.createCard())
-            })
+            }
         } else {
             this.vignetteRecette.innerHTML = `« Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.`
         }
@@ -180,13 +180,13 @@ export default class Search {
     displayIngredients() {
         this.menuItemIngredient.innerHTML = ""
         if (this.ingredients.size != 0) {
-            this.ingredients.forEach(ing => {
-            const list = document.createElement('div')
-            list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
-            list.innerHTML =
-            `<button type="button" id="${ing.toLocaleLowerCase()}" class="ingredient btn btn-transparant">${ing.toLocaleLowerCase()}</button>`
-            this.menuItemIngredient.appendChild(list)
-            })
+            for (const ing of this.ingredients) {
+                const list = document.createElement('div')
+                list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
+                list.innerHTML =
+                `<button type="button" id="${ing.toLocaleLowerCase()}" class="ingredient btn btn-transparant">${ing.toLocaleLowerCase()}</button>`
+                this.menuItemIngredient.appendChild(list)
+            }
         }else {
             this.menuItemIngredient.innerHTML = `<p class="ml-3 mr-3 mt-3">Aucun ingrédient ne correspond à votre critère… Vous pouvez chercher « coco », « poisson », etc</p>`
         }
@@ -196,13 +196,13 @@ export default class Search {
     displayAppliance() {
         this.menuItemAppliance.innerHTML = ""
         if (this.appliance.size != 0) {
-            this.appliance.forEach(appliance => {
+            for (const appliance of this.appliance) {
                 const list = document.createElement('div')
                 list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
                 list.innerHTML =
                 `<button type="button" id="${appliance.toLocaleLowerCase()}" class="appliance btn btn-transparant">${appliance.toLocaleLowerCase()}</bouton>`
                 this.menuItemAppliance.appendChild(list)
-            })
+            }
         } else {
                 this.menuItemAppliance.innerHTML = `<p class="ml-3 mr-3 mt-3">Aucun appareil ne correspond à votre critère… Vous pouvez chercher « four », « mixer », etc</p>`
         }
@@ -212,13 +212,13 @@ export default class Search {
     displayUstensil() {
         this.menuItemUstensil.innerHTML = ""
         if (this.ustensils.size != 0) {
-            this.ustensils.forEach(ustensil => {
-                    const list = document.createElement('div')
-                    list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
-                    list.innerHTML =
+            for (const ustensil of this.ustensils) {
+                const list = document.createElement('div')
+                list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
+                list.innerHTML =
                     `<button type="button" id="${ustensil.toLocaleLowerCase()}" class="ustensil btn btn-transparant">${ustensil.toLocaleLowerCase()}</bouton>`
-                        this.menuItemUstensil.appendChild(list)
-                })
+                this.menuItemUstensil.appendChild(list)
+            }
         } else {
             this.menuItemUstensil.innerHTML = `<p class="ml-3 mr-3 mt-3">Aucun ingrédient ne correspond à votre critère… Vous pouvez chercher « fouet », « louche », etc</p>`
         }

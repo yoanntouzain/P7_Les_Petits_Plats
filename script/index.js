@@ -11,14 +11,15 @@ const search = new Search(arrayRecipes)
 const searchRecipe = document.getElementById("searchRecipe")
 const formControls = document.querySelectorAll(".form-control")
 
-// Parcours des éléments
-recipes.forEach(recipe => {
-    arrayRecipes.push(new Recipe(recipe))
-})
 
-formControls.forEach(formControl => {
-        search.deleteSuggestion(formControl)
-})
+for (const recipe of recipes) {
+    arrayRecipes.push(new Recipe(recipe))
+}
+
+for (const formControl of formControls) {
+    search.deleteSuggestion(formControl)
+}
+
 
 // Functions
 search.compareValue()

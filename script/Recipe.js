@@ -17,7 +17,7 @@ export default class Recipe {
         card.setAttribute("id", this.id)
 
         let listIngredient = ""
-        this.ingredients.forEach(ingredient => {
+        for (const ingredient of this.ingredients) {
             //Permet d'afficher chaque ingrédient suivi de sa quantité et de son unité si il en possède une
             if (ingredient.quantity !== undefined) {
                 if (ingredient.unit != undefined) {
@@ -31,7 +31,7 @@ export default class Recipe {
                 listIngredient +=
                 `<strong>${ingredient.ingredient}</strong><br/>`
             }
-        })
+        }
 
         card.innerHTML =
         `<div class="card-header bg-secondary justify-content-between pt-5 pb-5 imageRecette"></div>
@@ -73,11 +73,11 @@ export default class Recipe {
     hasIngredient(ingredient) {
         let result = false
         if (this.ingredients != undefined && this.ingredients != "") {
-            this.ingredients.forEach(ing => {
+            for (const ing of this.ingredients) {
                 if (ing.ingredient.toLocaleLowerCase().includes(ingredient.toLocaleLowerCase())) {
                     result = true
                 }
-            })
+            }
         }
         return result
     }
@@ -97,11 +97,11 @@ export default class Recipe {
     hasUstensils(ustensils) {
         let result = false
         if (this.ustensils != undefined && this.ustensils != "") {
-            this.ustensils.forEach(ustensil => {
+            for (const ustensil of this.ustensils) {
                 if (ustensil.toLocaleLowerCase().includes(ustensils.toLocaleLowerCase())) {
                     result = true
                 }
-            })
+            }
         }
         return result
     }
@@ -112,14 +112,13 @@ export default class Recipe {
     containIngredients(ingredients) {
         let result = 0
         if (this.ingredients != undefined && this.ingredients != "") {
-            this.ingredients.forEach(ing => {
-                ingredients.forEach(tag => {
+            for (const ing of this.ingredients) {
+                for (const tag of ingredients) {
                     if (ing.ingredient.toLocaleLowerCase().includes(tag.toLocaleLowerCase())) {
                         result++
                     }
-                })
-
-            })
+                }
+            }
         }
         return result >= ingredients.length
     }
@@ -147,14 +146,13 @@ export default class Recipe {
     containUstensils(ustensils) {
         let result = 0
         if (this.ustensils != undefined && this.ustensils != "") {
-            this.ustensils.forEach(ustensil => {
-                ustensils.forEach(tag => {
+            for (const ustensil of this.ustensils) {
+                for (const tag of ustensils) {
                     if (ustensil.toLocaleLowerCase().includes(tag.toLocaleLowerCase())) {
                         result++
                     }
-                })
-
-            })
+                }
+            }
         }
         return result >= ustensils.length
     }

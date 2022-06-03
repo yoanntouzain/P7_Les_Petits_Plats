@@ -37,6 +37,7 @@ export function dropdownListener(type, searchClass, searchRecipe) {
             search.classList.remove()
             search.style.width = 95 + "%"
             search.focus()
+            search.autofocus = true
             switch (type) {
                 case "Ingredient":
                     console.log(type);
@@ -101,6 +102,7 @@ export function dropdownListener(type, searchClass, searchRecipe) {
             sizeBtn.classList.remove("col-6")
             sizeBtn.classList.add("col-2")
             search.style.width = 90 + "%"
+            search.autofocus = false
         }
     })
 }

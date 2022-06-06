@@ -57,3 +57,13 @@
     font-size: 0.8rem;
     padding: 0px 6px 2px 5px;
 }
+
+#searchRecipe::placeholder{
+    color: #000000;
+    opacity: 25%;
+}
+
+#searchIngredient::placeholder, #searchAppliance::placeholder, #searchUstensil::placeholder {
+    color: white;
+    opacity: 50%;
+}

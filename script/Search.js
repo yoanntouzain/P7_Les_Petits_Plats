@@ -184,7 +184,7 @@ export default class Search {
             const list = document.createElement('div')
             list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
             list.innerHTML =
-            `<button type="button" id="${ing.toLocaleLowerCase()}" class="ingredient btn btn-transparant">${ing.toLocaleLowerCase()}</button>`
+            `<button type="button" id="${ing.toLocaleLowerCase()}" class="ingredient btn btn-transparant text-white">${ing.toLocaleLowerCase()}</button>`
             this.menuItemIngredient.appendChild(list)
             })
         }else {
@@ -200,7 +200,7 @@ export default class Search {
                 const list = document.createElement('div')
                 list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
                 list.innerHTML =
-                `<button type="button" id="${appliance.toLocaleLowerCase()}" class="appliance btn btn-transparant">${appliance.toLocaleLowerCase()}</bouton>`
+                `<button type="button" id="${appliance.toLocaleLowerCase()}" class="appliance btn btn-transparant text-white">${appliance.toLocaleLowerCase()}</bouton>`
                 this.menuItemAppliance.appendChild(list)
             })
         } else {
@@ -216,7 +216,7 @@ export default class Search {
                     const list = document.createElement('div')
                     list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5')
                     list.innerHTML =
-                    `<button type="button" id="${ustensil.toLocaleLowerCase()}" class="ustensil btn btn-transparant">${ustensil.toLocaleLowerCase()}</bouton>`
+                    `<button type="button" id="${ustensil.toLocaleLowerCase()}" class="ustensil btn btn-transparant text-white">${ustensil.toLocaleLowerCase()}</bouton>`
                         this.menuItemUstensil.appendChild(list)
                 })
         } else {

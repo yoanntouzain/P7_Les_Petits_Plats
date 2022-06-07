@@ -38,11 +38,11 @@ export function dropdownListener(type, searchClass, searchRecipe) {
             search.style.width = 95 + "%"
             search.focus()
             search.autofocus = true
+            const searchRecipeValue = searchRecipe.value.toLocaleLowerCase().trim()
             switch (type) {
                 case "Ingredient":
                     console.log(type);
                     search.addEventListener("keyup", function(event) {
-                        const searchRecipeValue = searchRecipe.value.toLocaleLowerCase().trim()
                         const searchValue = event.target.value.toLocaleLowerCase().trim()
                         if (event.key === escape){
                             event.preventDefault()
@@ -69,9 +69,15 @@ export function dropdownListener(type, searchClass, searchRecipe) {
                         if (event.key === escape){
                             event.preventDefault()
                         }
-                        if (searchValue.length > 2) {
-                            searchClass.compareFilterAppliance(searchValue)
-                            searchClass.displayAppliances()
+                        if (searchRecipeValue != undefined && searchRecipeValue.length > 2) {
+                            console.log(searchRecipeValue);
+                            searchClass.compareFilterIngredient(searchValue)
+                            searchClass.displayIngredients()
+                        }else {
+                            if (searchValue.length > 2) {
+                                searchClass.compareFilterAppliance(searchValue)
+                                searchClass.displayAppliances()
+                            }
                         }
                     })
                 break
@@ -83,9 +89,15 @@ export function dropdownListener(type, searchClass, searchRecipe) {
                         if (event.key === escape){
                             event.preventDefault()
                         }
-                        if (searchValue.length > 2) {
-                            searchClass.compareFilterUstensil(searchValue)
-                            searchClass.displayUstensils()
+                        if (searchRecipeValue != undefined && searchRecipeValue.length > 2) {
+                            console.log(searchRecipeValue);
+                            searchClass.compareFilterIngredient(searchValue)
+                            searchClass.displayIngredients()
+                        }else {
+                            if (searchValue.length > 2) {
+                                searchClass.compareFilterUstensil(searchValue)
+                                searchClass.displayUstensils()
+                            }
                         }
                     })
                 break
@@ -114,6 +126,7 @@ export function elementClick(type, searchClass) {
     
     // Event
     menuItem.addEventListener("click", function(event) {
+        const search = document.getElementById("search"+type)
         const value = event.target.id
         const typeFiltre = type.toLocaleLowerCase()
         let button = createTagButton(value, typeFiltre)
@@ -158,5 +171,6 @@ export function elementClick(type, searchClass) {
                 break;
         }
         searchClass.compareValue()
+        search.value = "";
     })
 }

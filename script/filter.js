@@ -123,6 +123,12 @@ export function elementClick(type, searchClass) {
     
     // Variables
     const menuItem = document.getElementById("menuItem"+type)
+    const menu = document.getElementById("menu"+type)
+    const spaceUp = document.getElementById("spaceUp"+type)
+    const arrowDown = document.getElementById("arrowDown"+type)
+    const arrowUp = document.getElementById("arrowUp"+type)
+    const sizeBtn = document.getElementById("sizeBtn"+type)
+    const span = document.getElementById("span"+type)
     
     // Event
     menuItem.addEventListener("click", function(event) {
@@ -172,5 +178,14 @@ export function elementClick(type, searchClass) {
         }
         searchClass.compareValue()
         search.value = "";
+        menu.classList.add("d-none")
+        span.style.display = "block"
+        search.classList.add("d-none")
+        spaceUp.classList.remove("d-none")
+        arrowDown.classList.remove("d-none")
+        arrowUp.classList.add("d-none")
+        sizeBtn.classList.remove("col-6")
+        sizeBtn.classList.add("col-2")
+        search.style.width = 90 + "%"
     })
 }

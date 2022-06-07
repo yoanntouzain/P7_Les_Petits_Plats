@@ -1,3 +1,8 @@
+main {
+    z-index: 0;
+    top: 314px;
+}
+
 .container {
     max-width: 1440px;
 }
@@ -66,4 +71,9 @@
 #searchIngredient::placeholder, #searchAppliance::placeholder, #searchUstensil::placeholder {
     color: white;
     opacity: 50%;
+}
+
+#menuIngredient, #menuAppliance, #menuUstensil {
+    z-index: 1;
+    position: relative;
 }

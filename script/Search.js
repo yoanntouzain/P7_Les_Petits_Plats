@@ -70,9 +70,9 @@ export default class Search {
         })
 
         this.displayIngredients()
-        this.displayAppliance()
-        this.displayUstensil()
-        this.displayRecipe()
+        this.displayAppliances()
+        this.displayUstensils()
+        this.displayRecipes()
         this.clearSet(this.ingredients)
         this.clearSet(this.appliance)
         this.clearSet(this.ustensils)
@@ -164,7 +164,7 @@ export default class Search {
     }
 
     // Affiche les recettes
-    displayRecipe() {
+    displayRecipes() {
         this.vignetteRecette.innerHTML = ""
         if (this.resultRecipes.size != 0) {
             this.resultRecipes.forEach(recipe => {
@@ -193,7 +193,7 @@ export default class Search {
     }
 
     // Affiche les appareils dans le menu déroulant appareil
-    displayAppliance() {
+    displayAppliances() {
         this.menuItemAppliance.innerHTML = ""
         if (this.appliance.size != 0) {
             this.appliance.forEach(appliance => {
@@ -209,7 +209,7 @@ export default class Search {
     }
 
     // Affiche les ustensils dans le menu déroulant ustensil
-    displayUstensil() {
+    displayUstensils() {
         this.menuItemUstensil.innerHTML = ""
         if (this.ustensils.size != 0) {
             this.ustensils.forEach(ustensil => {

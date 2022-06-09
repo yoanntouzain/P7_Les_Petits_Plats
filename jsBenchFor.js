@@ -1723,12 +1723,12 @@ const recipes = [
         "appliance": "Four",
         "ustensils":["rouleau à patisserie","fouet"]
     }
-]
+];
 
 
-const resultRecipes = new Set(recipes)
-const ingredients = new Set()
-const ustensils = new Set()
+const resultRecipes = new Set(recipes);
+const ingredients = new Set();
+const ustensils = new Set();
 
 function boucleFor(searchRecipeValue) {
     compareFilterRecipe(searchRecipeValue);
@@ -1746,7 +1746,6 @@ function boucleFor(searchRecipeValue) {
     }
     
     displayIngredients();
-    displayAppliances();
     displayUstensils();
     displayRecipes();
 }
@@ -1760,18 +1759,6 @@ function boucleFor(searchRecipeValue) {
                 list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5');
                 list.innerHTML =
                 `<button type="button" id="${ing.toLocaleLowerCase()}" class="ingredient btn btn-transparant">${ing.toLocaleLowerCase()}</button>`;
-            }
-        }
-    }
-
-    // Affiche les appareils dans le menu déroulant appareil
-    function displayAppliances() {
-        if (appliance.size != 0) {
-            for (const appliance of appliances) {
-                const list = document.createElement('div');
-                list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5');
-                list.innerHTML =
-                `<button type="button" id="${appliance.toLocaleLowerCase()}" class="appliance btn btn-transparant">${appliance.toLocaleLowerCase()}</bouton>`;
             }
         }
     }
@@ -1821,26 +1808,22 @@ function boucleFor(searchRecipeValue) {
         return card;
     }
 
-
     function compareFilterRecipe(searchRecipeValue) {
-        recipes.forEach(recipe => {
+        for (const recipe of resultRecipes) {
             if (hasIngredient(searchRecipeValue, recipe)) {
                 resultRecipes.add(recipe);
             }
-        });
+        }
     }
-
-
-
 
     function hasIngredient(ingredient, recipe) {
         let result = false;
         if (recipe.ingredients != undefined && recipe.ingredients != "") {
-            recipe.ingredients.forEach(ing => {
+            for (const ing of recipe.ingredients) {
                 if (ing.ingredient.toLocaleLowerCase().includes(ingredient.toLocaleLowerCase())) {
                     result = true;
                 }
-            });
+            }
         }
         return result;
     }

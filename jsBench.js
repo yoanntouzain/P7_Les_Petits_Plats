@@ -1723,30 +1723,31 @@ const recipes = [
         "appliance": "Four",
         "ustensils":["rouleau à patisserie","fouet"]
     }
-]
+];
 
 
-const resultRecipes = new Set(recipes)
-const ingredients = new Set()
-const ustensils = new Set()
+const resultRecipes = new Set(recipes);
+const ingredients = new Set();
+const ustensils = new Set();
 
 function boucleForEach(searchRecipeValue) {
     compareFilterRecipe(searchRecipeValue);
 
-    for (const recipe of resultRecipes) {
 
 
-        for (const ing of recipe.ingredients) {
+    
+    resultRecipes.forEach(recipe => {
+
+        recipe.ingredients.forEach(ing => {
             ingredients.add(ing.ingredient.toLocaleLowerCase());
-        }
+        });
 
-        for (const ustensil of recipe.ustensils) {
+        recipe.ustensils.forEach(ustensil => {
             ustensils.add(ustensil.toLocaleLowerCase());
-        }
-    }
+        });
+    });
     
     displayIngredients();
-    displayAppliances();
     displayUstensils();
     displayRecipes();
 }
@@ -1755,36 +1756,24 @@ function boucleForEach(searchRecipeValue) {
     // Affiche les ingrédients dans le menu déroulant ingrédient
     function displayIngredients() {
         if (ingredients.size != 0) {
-            for (const ing of ingredients) {
+            ingredients.forEach(ing => {
                 const list = document.createElement('div');
                 list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5');
                 list.innerHTML =
-                `<button type="button" id="${ing.toLocaleLowerCase()}" class="ingredient btn btn-transparant">${ing.toLocaleLowerCase()}</button>`;
-            }
-        }
-    }
-
-    // Affiche les appareils dans le menu déroulant appareil
-    function displayAppliances() {
-        if (appliance.size != 0) {
-            for (const appliance of appliances) {
-                const list = document.createElement('div');
-                list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5');
-                list.innerHTML =
-                `<button type="button" id="${appliance.toLocaleLowerCase()}" class="appliance btn btn-transparant">${appliance.toLocaleLowerCase()}</bouton>`;
-            }
+                `<button type="button" id="${ing.toLocaleLowerCase()}" class="ingredient btn btn-transparant text-white">${ing.toLocaleLowerCase()}</button>`;
+            });
         }
     }
 
     // Affiche les ustensils dans le menu déroulant ustensil
     function displayUstensils() {
         if (ustensils.size != 0) {
-            for (const ustensil of ustensils) {
-                const list = document.createElement('div');
-                list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5');
-                list.innerHTML =
-                    `<button type="button" id="${ustensil.toLocaleLowerCase()}" class="ustensil btn btn-transparant">${ustensil.toLocaleLowerCase()}</bouton>`;
-            }
+            ustensils.forEach(ustensil => {
+                    const list = document.createElement('div');
+                    list.setAttribute('class', 'col-2 mb-2 ml-5 mr-5');
+                    list.innerHTML =
+                    `<button type="button" id="${ustensil.toLocaleLowerCase()}" class="ustensil btn btn-transparant text-white">${ustensil.toLocaleLowerCase()}</bouton>`;
+                });
         }
     }
 
@@ -1792,9 +1781,9 @@ function boucleForEach(searchRecipeValue) {
     // Affiche les recettes
     function displayRecipes() {
         if (resultRecipes.size != 0) {
-            for (const recipe of resultRecipes) {
+            resultRecipes.forEach(recipe => {
                 createCard(recipe);
-            }
+            });
         }
     }
 
@@ -1803,7 +1792,7 @@ function boucleForEach(searchRecipeValue) {
         const card = document.createElement("div");
 
         let listIngredient = "";
-        for (const ingredient of recipe.ingredients) {
+        recipe.ingredients.forEach(ingredient => {
             //Permet d'afficher chaque ingrédient suivi de sa quantité et de son unité si il en possède une
             if (ingredient.quantity !== undefined) {
                 if (ingredient.unit != undefined) {
@@ -1817,13 +1806,13 @@ function boucleForEach(searchRecipeValue) {
                 listIngredient +=
                 `<strong>${ingredient.ingredient}</strong><br/>`;
             }
-        }
+        });
         return card;
     }
 
 
     function compareFilterRecipe(searchRecipeValue) {
-        recipes.forEach(recipe => {
+        resultRecipes.forEach(recipe => {
             if (hasIngredient(searchRecipeValue, recipe)) {
                 resultRecipes.add(recipe);
             }

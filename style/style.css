@@ -1,6 +1,8 @@
 main {
     z-index: 0;
     top: 314px;
+    left: 2%;
+    right: 2%;
 }
 
 .container {
